@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @stock_movement_detail.product %>
+</p>
+
+<p>
+  <strong>Unit price:</strong>
+  <%= @stock_movement_detail.unit_price %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @stock_movement_detail.quantity %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @stock_movement_detail.amount %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @stock_movement_detail.status %>
+</p>
+
+<p>
+  <strong>Stock movement:</strong>
+  <%= @stock_movement_detail.stock_movement %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @stock_movement_detail.user %>
+</p>
+
+<%= link_to 'Edit', edit_stock_movement_detail_path(@stock_movement_detail) %> |
+<%= link_to 'Back', stock_movement_details_path %>

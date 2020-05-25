@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  landlord_type: one
+  civility: MyString
+  last_name: MyString
+  first_name: MyString
+  birth_date: 2020-05-22 10:53:24
+  birth_place: MyString
+  id_type: MyString
+  id_number: MyString
+  id_expiration: MyString
+  profession: MyString
+  nationality: MyString
+  company_name: MyString
+  address: MyString
+  phone: MyString
+  city: MyString
+  country: MyString
+  email: MyString
+  about: MyText
+  user: one
+  status: MyString
+
+two:
+  landlord_type: two
+  civility: MyString
+  last_name: MyString
+  first_name: MyString
+  birth_date: 2020-05-22 10:53:24
+  birth_place: MyString
+  id_type: MyString
+  id_number: MyString
+  id_expiration: MyString
+  profession: MyString
+  nationality: MyString
+  company_name: MyString
+  address: MyString
+  phone: MyString
+  city: MyString
+  country: MyString
+  email: MyString
+  about: MyText
+  user: two
+  status: MyString

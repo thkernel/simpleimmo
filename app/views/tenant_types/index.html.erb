@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tenant Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tenant_types.each do |tenant_type| %>
+      <tr>
+        <td><%= tenant_type.name %></td>
+        <td><%= tenant_type.description %></td>
+        <td><%= tenant_type.status %></td>
+        <td><%= tenant_type.user %></td>
+        <td><%= link_to 'Show', tenant_type %></td>
+        <td><%= link_to 'Edit', edit_tenant_type_path(tenant_type) %></td>
+        <td><%= link_to 'Destroy', tenant_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tenant Type', new_tenant_type_path %>

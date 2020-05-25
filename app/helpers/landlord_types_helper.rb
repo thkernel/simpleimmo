@@ -1,0 +1,2 @@
+module LandlordTypesHelper
+end

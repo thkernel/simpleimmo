@@ -1,0 +1,137 @@
+<%= form_with(model: lease, local: true) do |form| %>
+  <% if lease.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lease.errors.count, "error") %> prohibited this lease from being saved:</h2>
+
+      <ul>
+      <% lease.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tenant_id %>
+    <%= form.text_field :tenant_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :building_id %>
+    <%= form.number_field :building_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_id %>
+    <%= form.number_field :property_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :usage_type %>
+    <%= form.text_field :usage_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.datetime_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.datetime_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :effective_date %>
+    <%= form.datetime_select :effective_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.text_field :duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :id_type %>
+    <%= form.text_field :id_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :id_number %>
+    <%= form.text_field :id_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :periodicity %>
+    <%= form.text_field :periodicity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payment_method %>
+    <%= form.text_field :payment_method %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payment_date %>
+    <%= form.number_field :payment_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :receipt_date %>
+    <%= form.number_field :receipt_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rent_excluding_tax %>
+    <%= form.text_field :rent_excluding_tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vat_rate %>
+    <%= form.text_field :vat_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :net_amount %>
+    <%= form.text_field :net_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vat_paid_by_tenant %>
+    <%= form.check_box :vat_paid_by_tenant %>
+  </div>
+
+  <div class="field">
+    <%= form.label :guarantee_amount %>
+    <%= form.text_field :guarantee_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avance %>
+    <%= form.text_field :avance %>
+  </div>
+
+  <div class="field">
+    <%= form.label :renewable %>
+    <%= form.check_box :renewable %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

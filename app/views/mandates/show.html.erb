@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Landlord:</strong>
+  <%= @mandate.landlord %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @mandate.building_id %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @mandate.property_id %>
+</p>
+
+<p>
+  <strong>Usage type:</strong>
+  <%= @mandate.usage_type %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @mandate.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @mandate.end_date %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @mandate.duration %>
+</p>
+
+<p>
+  <strong>Id type:</strong>
+  <%= @mandate.id_type %>
+</p>
+
+<p>
+  <strong>Id number:</strong>
+  <%= @mandate.id_number %>
+</p>
+
+<p>
+  <strong>Periodicity:</strong>
+  <%= @mandate.periodicity %>
+</p>
+
+<p>
+  <strong>Property value:</strong>
+  <%= @mandate.property_value %>
+</p>
+
+<p>
+  <strong>Commission rate:</strong>
+  <%= @mandate.commission_rate %>
+</p>
+
+<p>
+  <strong>Commission amount:</strong>
+  <%= @mandate.commission_amount %>
+</p>
+
+<p>
+  <strong>Vat rate:</strong>
+  <%= @mandate.vat_rate %>
+</p>
+
+<p>
+  <strong>Net amount:</strong>
+  <%= @mandate.net_amount %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @mandate.status %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @mandate.notes %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @mandate.user %>
+</p>
+
+<%= link_to 'Edit', edit_mandate_path(@mandate) %> |
+<%= link_to 'Back', mandates_path %>

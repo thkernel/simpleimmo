@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @delivery_man.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @delivery_man.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @delivery_man.city %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @delivery_man.country %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @delivery_man.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @delivery_man.email %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @delivery_man.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @delivery_man.user %>
+</p>
+
+<%= link_to 'Edit', edit_delivery_man_path(@delivery_man) %> |
+<%= link_to 'Back', delivery_men_path %>

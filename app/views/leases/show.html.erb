@@ -1,0 +1,124 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @lease.tenant %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @lease.building_id %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @lease.property_id %>
+</p>
+
+<p>
+  <strong>Usage type:</strong>
+  <%= @lease.usage_type %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @lease.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @lease.end_date %>
+</p>
+
+<p>
+  <strong>Effective date:</strong>
+  <%= @lease.effective_date %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @lease.duration %>
+</p>
+
+<p>
+  <strong>Id type:</strong>
+  <%= @lease.id_type %>
+</p>
+
+<p>
+  <strong>Id number:</strong>
+  <%= @lease.id_number %>
+</p>
+
+<p>
+  <strong>Periodicity:</strong>
+  <%= @lease.periodicity %>
+</p>
+
+<p>
+  <strong>Payment method:</strong>
+  <%= @lease.payment_method %>
+</p>
+
+<p>
+  <strong>Payment date:</strong>
+  <%= @lease.payment_date %>
+</p>
+
+<p>
+  <strong>Receipt date:</strong>
+  <%= @lease.receipt_date %>
+</p>
+
+<p>
+  <strong>Rent excluding tax:</strong>
+  <%= @lease.rent_excluding_tax %>
+</p>
+
+<p>
+  <strong>Vat rate:</strong>
+  <%= @lease.vat_rate %>
+</p>
+
+<p>
+  <strong>Net amount:</strong>
+  <%= @lease.net_amount %>
+</p>
+
+<p>
+  <strong>Vat paid by tenant:</strong>
+  <%= @lease.vat_paid_by_tenant %>
+</p>
+
+<p>
+  <strong>Guarantee amount:</strong>
+  <%= @lease.guarantee_amount %>
+</p>
+
+<p>
+  <strong>Avance:</strong>
+  <%= @lease.avance %>
+</p>
+
+<p>
+  <strong>Renewable:</strong>
+  <%= @lease.renewable %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @lease.status %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @lease.notes %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @lease.user %>
+</p>
+
+<%= link_to 'Edit', edit_lease_path(@lease) %> |
+<%= link_to 'Back', leases_path %>

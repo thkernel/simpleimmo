@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Handovers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Reference</th>
+      <th>Lease</th>
+      <th>Doors</th>
+      <th>Windows</th>
+      <th>Wall cover</th>
+      <th>Flooring</th>
+      <th>Ventilators</th>
+      <th>Air conditioners</th>
+      <th>Light bulbs</th>
+      <th>Faucets</th>
+      <th>Showers</th>
+      <th>Doorbell</th>
+      <th>Ceiling</th>
+      <th>Electricity</th>
+      <th>Notes</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @handovers.each do |handover| %>
+      <tr>
+        <td><%= handover.type %></td>
+        <td><%= handover.reference %></td>
+        <td><%= handover.lease %></td>
+        <td><%= handover.doors %></td>
+        <td><%= handover.windows %></td>
+        <td><%= handover.wall_cover %></td>
+        <td><%= handover.flooring %></td>
+        <td><%= handover.ventilators %></td>
+        <td><%= handover.air_conditioners %></td>
+        <td><%= handover.light_bulbs %></td>
+        <td><%= handover.faucets %></td>
+        <td><%= handover.showers %></td>
+        <td><%= handover.doorbell %></td>
+        <td><%= handover.ceiling %></td>
+        <td><%= handover.electricity %></td>
+        <td><%= handover.notes %></td>
+        <td><%= handover.user %></td>
+        <td><%= link_to 'Show', handover %></td>
+        <td><%= link_to 'Edit', edit_handover_path(handover) %></td>
+        <td><%= link_to 'Destroy', handover, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Handover', new_handover_path %>

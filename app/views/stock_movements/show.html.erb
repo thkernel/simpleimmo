@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reference:</strong>
+  <%= @stock_movement.reference %>
+</p>
+
+<p>
+  <strong>Movement type:</strong>
+  <%= @stock_movement.movement_type %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @stock_movement.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @stock_movement.user %>
+</p>
+
+<%= link_to 'Edit', edit_stock_movement_path(@stock_movement) %> |
+<%= link_to 'Back', stock_movements_path %>

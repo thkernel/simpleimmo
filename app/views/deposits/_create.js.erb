@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @deposit.errors.any? %>
+  <% @deposit.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".deposits").html("<%= escape_javascript(render 'index') %>");
+  $("#deposit-modal").modal("hide");
+ 
+<% end %>

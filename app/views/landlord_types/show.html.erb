@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @landlord_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @landlord_type.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @landlord_type.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @landlord_type.user %>
+</p>
+
+<%= link_to 'Edit', edit_landlord_type_path(@landlord_type) %> |
+<%= link_to 'Back', landlord_types_path %>

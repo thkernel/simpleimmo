@@ -1,0 +1,23 @@
+<tr>
+  <td>
+    <div class="field">
+        <%= f.label :product_id %>
+        <%= f.collection_select(:product_id, @products, :id, :name, {prompt: "Sélectionner un produit"}, class: "form-control", required: true) %> 
+
+    </div>
+  </td>
+
+<td>
+  <div class="field">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, id: :stock_movement_detail_quantity, class: "form-control" %>
+  </div>
+
+  
+  </td>
+  <td>
+    <div class="field">
+    <%= link_to_remove_association "Supprimer", f, class:"btn btn-danger" %>
+    </div>
+  </td>
+  </tr>

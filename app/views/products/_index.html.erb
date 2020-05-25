@@ -1,0 +1,16 @@
+<% @products.each do |product| %>
+      <tr class="c-table__row">
+        <td ><%= product.name %></td>
+        <td ><%= unity_to_name(product.unity_id) %></td>
+        <td ><%= product.unit_price %></td>
+        <td ><%= deposit_to_name(product.deposit_id) %></td>
+        <td ><%= product_category_to_name(product.product_category_id) %></td>
+        <td ><%= product.reorder_threshold %></td>
+        
+        <td >
+         <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_product_path(product), remote: true %>
+        <%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>

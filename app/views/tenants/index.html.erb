@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tenants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tenant type</th>
+      <th>Civility</th>
+      <th>Last name</th>
+      <th>First name</th>
+      <th>Birth date</th>
+      <th>Birth place</th>
+      <th>Id type</th>
+      <th>Id number</th>
+      <th>Id expiration</th>
+      <th>Profession</th>
+      <th>Nationality</th>
+      <th>Company name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Email</th>
+      <th>About</th>
+      <th>User</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tenants.each do |tenant| %>
+      <tr>
+        <td><%= tenant.tenant_type %></td>
+        <td><%= tenant.civility %></td>
+        <td><%= tenant.last_name %></td>
+        <td><%= tenant.first_name %></td>
+        <td><%= tenant.birth_date %></td>
+        <td><%= tenant.birth_place %></td>
+        <td><%= tenant.id_type %></td>
+        <td><%= tenant.id_number %></td>
+        <td><%= tenant.id_expiration %></td>
+        <td><%= tenant.profession %></td>
+        <td><%= tenant.nationality %></td>
+        <td><%= tenant.company_name %></td>
+        <td><%= tenant.address %></td>
+        <td><%= tenant.phone %></td>
+        <td><%= tenant.city %></td>
+        <td><%= tenant.country %></td>
+        <td><%= tenant.email %></td>
+        <td><%= tenant.about %></td>
+        <td><%= tenant.user %></td>
+        <td><%= tenant.status %></td>
+        <td><%= link_to 'Show', tenant %></td>
+        <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td>
+        <td><%= link_to 'Destroy', tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tenant', new_tenant_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tenant_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tenant_type.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @tenant_type.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tenant_type.user %>
+</p>
+
+<%= link_to 'Edit', edit_tenant_type_path(@tenant_type) %> |
+<%= link_to 'Back', tenant_types_path %>

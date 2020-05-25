@@ -1,0 +1,2 @@
+json.extract! lease, :id, :tenant_id, :building_id, :property_id, :usage_type, :start_date, :end_date, :effective_date, :duration, :id_type, :id_number, :periodicity, :payment_method, :payment_date, :receipt_date, :rent_excluding_tax, :vat_rate, :net_amount, :vat_paid_by_tenant, :guarantee_amount, :avance, :renewable, :status, :notes, :user_id, :created_at, :updated_at
+json.url lease_url(lease, format: :json)

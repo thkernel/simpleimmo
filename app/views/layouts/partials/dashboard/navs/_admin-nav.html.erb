@@ -1,0 +1,153 @@
+<!-- ########## START: LEFT PANEL ########## -->
+
+      <ul class="br-sideleft-menu">
+        <li class="br-menu-item">
+          <a href="index.html" class="br-menu-link active">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
+            <span class="menu-item-label">Tableau de bord</span>
+          </a><!-- br-menu-link -->
+        </li><!-- br-menu-item -->
+        
+
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-money tx-20"></i>
+            <span class="menu-item-label">Gestion de caisse</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Caisses", root_path, class: "sub-link" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Mouvements", root_path, class: "sub-link" %>
+            </li>
+          </ul>
+        </li>
+
+
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-money tx-20"></i>
+            <span class="menu-item-label">Facturation</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Bon de Commandes", root_path, class: "sub-link" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Facturation", root_path, class: "sub-link" %>
+            </li>
+            <li class="sub-item">
+                <%= link_to  "Devis", root_path, class: "sub-link" %>
+            </li>
+          </ul>
+        </li>
+
+        
+
+
+      <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-money tx-20"></i>
+            <span class="menu-item-label">Gestion de parc</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Matériels", materials_path, class: "sub-link" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Locations", root_path, class: "sub-link" %>
+            </li>
+            <li class="sub-item">
+                <%= link_to  "Réparations", root_path, class: "sub-link" %>
+            </li>
+          </ul>
+        </li>
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-cubes tx-20"></i>
+            <span class="menu-item-label">Gestion de stock</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Produits", root_path, class: "sub-link" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Mouvements de stock", root_path, class: "sub-link" %>
+            </li>
+          </ul>
+        </li>
+
+         
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-users tx-20"></i>
+            <span class="menu-item-label">Tierces</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Clients", customers_path, class: "sub-link" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Fournisseurs", providers_path, class: "sub-link" %>
+            </li>
+          </ul>
+        </li>
+
+        
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-cogs tx-20"></i>
+            <span class="menu-item-label">Paramètres</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Utilisateurs", all_users_path, class: "sub-link" %>
+            </li>
+
+            <li class="sub-item">
+                <%= link_to  "Catégories produits", product_categories_path, class: "sub-link" %>
+            </li>
+
+            <li class="sub-item">
+                <%= link_to  "Types de mouvement", movement_types_path, class: "sub-link" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Types de matériel", material_types_path, class: "sub-link" %>
+            </li>
+            <li class="sub-item">
+                <%= link_to  "Types d'entrepôt", store_types_path, class: "sub-link" %>
+            </li>
+            <li class="sub-item">
+                <%= link_to  "Types de client", customer_types_path, class: "sub-link" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Types de forunisseur", provider_types_path, class: "sub-link" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Entrepôts", stores_path, class: "sub-link" %>
+            </li>
+            <li class="sub-item">
+                <%= link_to  "Unités", unities_path, class: "sub-link" %>
+            </li>
+          </ul>
+        </li>
+       
+      </ul><!-- br-sideleft-menu -->
+
+      
+       
+        
+      </div><!-- info-list -->
+
+    <!-- ########## END: LEFT PANEL ########## -->

@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  landlord: one
+  building_id: 1
+  property_id: 1
+  usage_type: MyString
+  start_date: 2020-05-22 11:40:09
+  end_date: 2020-05-22 11:40:09
+  duration: MyString
+  id_type: MyString
+  id_number: MyString
+  periodicity: MyString
+  property_value: 1.5
+  commission_rate: 1.5
+  commission_amount: 1.5
+  vat_rate: 1.5
+  net_amount: 1.5
+  status: MyString
+  notes: MyText
+  user: one
+
+two:
+  landlord: two
+  building_id: 1
+  property_id: 1
+  usage_type: MyString
+  start_date: 2020-05-22 11:40:09
+  end_date: 2020-05-22 11:40:09
+  duration: MyString
+  id_type: MyString
+  id_number: MyString
+  periodicity: MyString
+  property_value: 1.5
+  commission_rate: 1.5
+  commission_amount: 1.5
+  vat_rate: 1.5
+  net_amount: 1.5
+  status: MyString
+  notes: MyText
+  user: two

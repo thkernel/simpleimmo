@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @store_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @store_type.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @store_type.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @store_type.user %>
+</p>
+
+<%= link_to 'Edit', edit_store_type_path(@store_type) %> |
+<%= link_to 'Back', store_types_path %>

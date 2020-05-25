@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mandates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Landlord</th>
+      <th>Building</th>
+      <th>Property</th>
+      <th>Usage type</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Duration</th>
+      <th>Id type</th>
+      <th>Id number</th>
+      <th>Periodicity</th>
+      <th>Property value</th>
+      <th>Commission rate</th>
+      <th>Commission amount</th>
+      <th>Vat rate</th>
+      <th>Net amount</th>
+      <th>Status</th>
+      <th>Notes</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mandates.each do |mandate| %>
+      <tr>
+        <td><%= mandate.landlord %></td>
+        <td><%= mandate.building_id %></td>
+        <td><%= mandate.property_id %></td>
+        <td><%= mandate.usage_type %></td>
+        <td><%= mandate.start_date %></td>
+        <td><%= mandate.end_date %></td>
+        <td><%= mandate.duration %></td>
+        <td><%= mandate.id_type %></td>
+        <td><%= mandate.id_number %></td>
+        <td><%= mandate.periodicity %></td>
+        <td><%= mandate.property_value %></td>
+        <td><%= mandate.commission_rate %></td>
+        <td><%= mandate.commission_amount %></td>
+        <td><%= mandate.vat_rate %></td>
+        <td><%= mandate.net_amount %></td>
+        <td><%= mandate.status %></td>
+        <td><%= mandate.notes %></td>
+        <td><%= mandate.user %></td>
+        <td><%= link_to 'Show', mandate %></td>
+        <td><%= link_to 'Edit', edit_mandate_path(mandate) %></td>
+        <td><%= link_to 'Destroy', mandate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mandate', new_mandate_path %>

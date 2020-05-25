@@ -1,0 +1,25 @@
+<% @stock_movements.each do |stock_movement| %>
+      <tr >
+        <td ><%= stock_movement.reference %></td>
+        <td ><%= get_movement_type_name(stock_movement.movement_type_id) %></td>
+        <td ><%= get_product_name(stock_movement.product_id) %></td>
+        <td ><%= stock_movement.quantity %></td>
+
+        
+       
+        
+        <td>
+					<div class="action-buttons">
+					<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_stock_movement_path(stock_movement), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), stock_movement_delete_path(stock_movement), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+
+      </tr>
+    <% end %>

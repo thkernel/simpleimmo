@@ -1,0 +1,102 @@
+<%= form_with(model: handover, local: true) do |form| %>
+  <% if handover.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(handover.errors.count, "error") %> prohibited this handover from being saved:</h2>
+
+      <ul>
+      <% handover.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reference %>
+    <%= form.text_field :reference %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lease_id %>
+    <%= form.text_field :lease_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doors %>
+    <%= form.text_field :doors %>
+  </div>
+
+  <div class="field">
+    <%= form.label :windows %>
+    <%= form.text_field :windows %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wall_cover %>
+    <%= form.text_field :wall_cover %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flooring %>
+    <%= form.text_field :flooring %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ventilators %>
+    <%= form.text_field :ventilators %>
+  </div>
+
+  <div class="field">
+    <%= form.label :air_conditioners %>
+    <%= form.text_field :air_conditioners %>
+  </div>
+
+  <div class="field">
+    <%= form.label :light_bulbs %>
+    <%= form.text_field :light_bulbs %>
+  </div>
+
+  <div class="field">
+    <%= form.label :faucets %>
+    <%= form.text_field :faucets %>
+  </div>
+
+  <div class="field">
+    <%= form.label :showers %>
+    <%= form.text_field :showers %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doorbell %>
+    <%= form.text_field :doorbell %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ceiling %>
+    <%= form.text_field :ceiling %>
+  </div>
+
+  <div class="field">
+    <%= form.label :electricity %>
+    <%= form.text_field :electricity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

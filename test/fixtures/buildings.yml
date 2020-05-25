@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  landlord: one
+  reference: MyString
+  apartment_number: 1
+  address: MyString
+  city: one
+  neighborhood: MyString
+  surface: 1.5
+  value: 1.5
+  about: MyText
+  status: MyString
+  user: one
+
+two:
+  landlord: two
+  reference: MyString
+  apartment_number: 1
+  address: MyString
+  city: two
+  neighborhood: MyString
+  surface: 1.5
+  value: 1.5
+  about: MyText
+  status: MyString
+  user: two

@@ -1,0 +1,107 @@
+<%= form_with(model: mandate, local: true) do |form| %>
+  <% if mandate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mandate.errors.count, "error") %> prohibited this mandate from being saved:</h2>
+
+      <ul>
+      <% mandate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :landlord_id %>
+    <%= form.text_field :landlord_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :building_id %>
+    <%= form.number_field :building_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_id %>
+    <%= form.number_field :property_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :usage_type %>
+    <%= form.text_field :usage_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.datetime_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.datetime_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.text_field :duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :id_type %>
+    <%= form.text_field :id_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :id_number %>
+    <%= form.text_field :id_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :periodicity %>
+    <%= form.text_field :periodicity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_value %>
+    <%= form.text_field :property_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :commission_rate %>
+    <%= form.text_field :commission_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :commission_amount %>
+    <%= form.text_field :commission_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vat_rate %>
+    <%= form.text_field :vat_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :net_amount %>
+    <%= form.text_field :net_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
