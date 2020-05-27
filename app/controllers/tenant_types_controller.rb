@@ -1,5 +1,9 @@
 class TenantTypesController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_tenant_type, only: [:show, :edit, :update, :destroy]
+
+  layout "dashboard"
 
   # GET /tenant_types
   # GET /tenant_types.json
@@ -24,12 +28,16 @@ class TenantTypesController < ApplicationController
   # POST /tenant_types
   # POST /tenant_types.json
   def create
-    @tenant_type = TenantType.new(tenant_type_params)
+    @tenant_type = current_user.tenant_types.build(tenant_type_params)
 
     respond_to do |format|
       if @tenant_type.save
+
+        @tenant_types = TenantType.all
+
         format.html { redirect_to @tenant_type, notice: 'Tenant type was successfully created.' }
         format.json { render :show, status: :created, location: @tenant_type }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @tenant_type.errors, status: :unprocessable_entity }
@@ -42,14 +50,21 @@ class TenantTypesController < ApplicationController
   def update
     respond_to do |format|
       if @tenant_type.update(tenant_type_params)
+        @tenant_types = TenantType.all
         format.html { redirect_to @tenant_type, notice: 'Tenant type was successfully updated.' }
         format.json { render :show, status: :ok, location: @tenant_type }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @tenant_type.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
+  def delete
+      @tenant_type = TenantType.find(params[:tenant_type_id])
+    end
 
   # DELETE /tenant_types/1
   # DELETE /tenant_types/1.json
@@ -69,6 +84,6 @@ class TenantTypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tenant_type_params
-      params.require(:tenant_type).permit(:name, :description, :status, :user_id)
+      params.require(:tenant_type).permit(:name, :description)
     end
 end

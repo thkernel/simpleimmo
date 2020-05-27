@@ -1,0 +1,17 @@
+ <% @property_types.each do |property_type| %>
+      <tr>
+        <td><%= property_type.name %></td>
+        <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_property_type_path(property_type), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), property_type_delete_path(property_type), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+      </tr>
+    <% end %>

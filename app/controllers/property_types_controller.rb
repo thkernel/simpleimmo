@@ -1,5 +1,9 @@
 class PropertyTypesController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_property_type, only: [:show, :edit, :update, :destroy]
+
+layout "dashboard"
 
   # GET /property_types
   # GET /property_types.json
@@ -24,12 +28,15 @@ class PropertyTypesController < ApplicationController
   # POST /property_types
   # POST /property_types.json
   def create
-    @property_type = PropertyType.new(property_type_params)
+    @property_type = current_user.property_types.build(property_type_params)
 
     respond_to do |format|
       if @property_type.save
+        @property_types = PropertyType.all
+
         format.html { redirect_to @property_type, notice: 'Property type was successfully created.' }
         format.json { render :show, status: :created, location: @property_type }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @property_type.errors, status: :unprocessable_entity }
@@ -42,14 +49,23 @@ class PropertyTypesController < ApplicationController
   def update
     respond_to do |format|
       if @property_type.update(property_type_params)
+
+        @property_types = PropertyType.all
+
         format.html { redirect_to @property_type, notice: 'Property type was successfully updated.' }
         format.json { render :show, status: :ok, location: @property_type }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @property_type.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
+    def delete
+      @property_type = PropertyType.find(params[:property_type_id])
+    end
 
   # DELETE /property_types/1
   # DELETE /property_types/1.json
@@ -69,6 +85,6 @@ class PropertyTypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_type_params
-      params.require(:property_type).permit(:name, :description, :status, :user_id)
+      params.require(:property_type).permit(:name, :description)
     end
 end

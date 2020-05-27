@@ -22,7 +22,7 @@ class DashboardController < ApplicationController
 	end
 
 	def create_company
-		company = Company.all
+		#company = Company.all
 		#if  company.blank? && is_admin?
 			#redirect_to new_company_path
 		#end

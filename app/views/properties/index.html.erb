@@ -1,8 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h3>Propriétés</h3></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody">
+  <div class="br-section-wrapper">
+<div class="headers mg-b-20">
+    <div class="left-content">
+    </div>
 
-<h1>Properties</h1>
+    <div class="text-right">
+        <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_property_type_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
-<table>
+    </div>
+
+</div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
+  
+
+
   <thead>
     <tr>
       <th>Building</th>
@@ -28,36 +47,14 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @properties.each do |property| %>
-      <tr>
-        <td><%= property.building %></td>
-        <td><%= property.landlord %></td>
-        <td><%= property.property_type %></td>
-        <td><%= property.reference %></td>
-        <td><%= property.description %></td>
-        <td><%= property.pieces_number %></td>
-        <td><%= property.room_number %></td>
-        <td><%= property.bath_room %></td>
-        <td><%= property.rent_excluding_tax %></td>
-        <td><%= property.address %></td>
-        <td><%= property.city %></td>
-        <td><%= property.neighborhood %></td>
-        <td><%= property.street %></td>
-        <td><%= property.door %></td>
-        <td><%= property.surface %></td>
-        <td><%= property.value %></td>
-        <td><%= property.about %></td>
-        <td><%= property.status %></td>
-        <td><%= property.user %></td>
-        <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody class="properties">
+    <%= render "index"%>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Property', new_property_path %>
+
+
+</div>
+</div>
+<div id="property-modal" class="modal fade" data-backdrop="static"></div>

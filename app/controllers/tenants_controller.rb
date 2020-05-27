@@ -1,5 +1,7 @@
 class TenantsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tenant, only: [:show, :edit, :update, :destroy]
+  layout "dashboard"
 
   # GET /tenants
   # GET /tenants.json
@@ -14,22 +16,28 @@ class TenantsController < ApplicationController
 
   # GET /tenants/new
   def new
+    @tenant_types = TenantType.all
     @tenant = Tenant.new
   end
 
   # GET /tenants/1/edit
   def edit
+    @tenant_types = TenantType.all
   end
 
   # POST /tenants
   # POST /tenants.json
   def create
-    @tenant = Tenant.new(tenant_params)
+    @tenant = current_user.tenants.build(tenant_params)
 
     respond_to do |format|
       if @tenant.save
+
+        @tenants = Tenant.all
+
         format.html { redirect_to @tenant, notice: 'Tenant was successfully created.' }
         format.json { render :show, status: :created, location: @tenant }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @tenant.errors, status: :unprocessable_entity }
@@ -42,14 +50,21 @@ class TenantsController < ApplicationController
   def update
     respond_to do |format|
       if @tenant.update(tenant_params)
+        @tenants = Tenant.all
         format.html { redirect_to @tenant, notice: 'Tenant was successfully updated.' }
         format.json { render :show, status: :ok, location: @tenant }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @tenant.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
+  def delete
+      @tenant = Tenant.find(params[:tenant_id])
+    end
 
   # DELETE /tenants/1
   # DELETE /tenants/1.json
@@ -69,6 +84,6 @@ class TenantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tenant_params
-      params.require(:tenant).permit(:tenant_type_id, :civility, :last_name, :first_name, :birth_date, :birth_place, :id_type, :id_number, :id_expiration, :profession, :nationality, :company_name, :address, :phone, :city, :country, :email, :about, :user_id, :status)
+      params.require(:tenant).permit(:tenant_type_id, :civility, :last_name, :first_name, :birth_date, :birth_place, :id_type, :id_number, :id_expiration, :profession, :nationality, :company_name, :address, :phone, :city, :country, :email, :about)
     end
 end

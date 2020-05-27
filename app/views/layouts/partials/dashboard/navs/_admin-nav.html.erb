@@ -2,106 +2,78 @@
 
       <ul class="br-sideleft-menu">
         <li class="br-menu-item">
-          <a href="index.html" class="br-menu-link active">
-            <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
-            <span class="menu-item-label">Tableau de bord</span>
-          </a><!-- br-menu-link -->
+          <%= link_to  raw('<i class="fa fa-home tx-20"></i> <span class="menu-item-label">Tableau de bord</span>'), dashboard_path, class: "br-menu-link active" %>
         </li><!-- br-menu-item -->
-        
-
-
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-money tx-20"></i>
-            <span class="menu-item-label">Gestion de caisse</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Caisses", root_path, class: "sub-link" %>
-            </li>
-             <li class="sub-item">
-                <%= link_to  "Mouvements", root_path, class: "sub-link" %>
-            </li>
-          </ul>
-        </li>
-
-
-
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-money tx-20"></i>
-            <span class="menu-item-label">Facturation</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Bon de Commandes", root_path, class: "sub-link" %>
-            </li>
-             <li class="sub-item">
-                <%= link_to  "Facturation", root_path, class: "sub-link" %>
-            </li>
-            <li class="sub-item">
-                <%= link_to  "Devis", root_path, class: "sub-link" %>
-            </li>
-          </ul>
-        </li>
 
         
 
 
-      <li class="br-menu-item">
+        <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-money tx-20"></i>
-            <span class="menu-item-label">Gestion de parc</span>
+            <i class="fa fa-building tx-20"></i>
+            <span class="menu-item-label">Biens</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
             
             <li class="sub-item">
-                <%= link_to  "Matériels", materials_path, class: "sub-link" %>
+                <%= link_to  "Biens", properties_path, class: "sub-link" %>
             </li>
              <li class="sub-item">
-                <%= link_to  "Locations", root_path, class: "sub-link" %>
-            </li>
-            <li class="sub-item">
-                <%= link_to  "Réparations", root_path, class: "sub-link" %>
+                <%= link_to  "Immeubles", root_path, class: "sub-link" %>
             </li>
           </ul>
         </li>
 
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-cubes tx-20"></i>
-            <span class="menu-item-label">Gestion de stock</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Produits", root_path, class: "sub-link" %>
-            </li>
-             <li class="sub-item">
-                <%= link_to  "Mouvements de stock", root_path, class: "sub-link" %>
-            </li>
-          </ul>
+          <%= link_to  raw('<i class="fa fa-key tx-20"></i> <span class="menu-item-label">Locations</span>'), leases_path, class: "br-menu-link" %>
         </li>
 
-         
+        <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-file-text-o tx-20"></i> <span class="menu-item-label">Mandats</span>'), mandates_path, class: "br-menu-link" %>
+        </li> 
+
+        <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-users tx-20"></i> <span class="menu-item-label">Locataires</span>'), tenants_path, class: "br-menu-link" %>
+        </li>
+        <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-user-secret tx-20"></i> <span class="menu-item-label">Propriétaires</span>'), landlords_path, class: "br-menu-link" %>
+        </li>
+
+        <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-check-square-o tx-20"></i> <span class="menu-item-label">Etats des lieux</span>'), handovers_path, class: "br-menu-link" %>
+        </li> 
+
+        <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-money tx-20"></i> <span class="menu-item-label">Paiements</span>'), mandates_path, class: "br-menu-link" %>
+        </li>
+
 
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-users tx-20"></i>
-            <span class="menu-item-label">Tierces</span>
+            <i class="fa fa-line-chart tx-20"></i>
+            <span class="menu-item-label">Situations</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
             
             <li class="sub-item">
-                <%= link_to  "Clients", customers_path, class: "sub-link" %>
+                <%= link_to  "Utilisateurs", all_users_path, class: "sub-link" %>
             </li>
-             <li class="sub-item">
-                <%= link_to  "Fournisseurs", providers_path, class: "sub-link" %>
+
+            <li class="sub-item">
+                <%= link_to  "Types de locataires", tenant_types_path, class: "sub-link" %>
             </li>
+
+            <li class="sub-item">
+                <%= link_to  "Types de propriétaires", landlord_types_path, class: "sub-link" %>
+            </li>
+
+            <li class="sub-item">
+                <%= link_to  "Types de propriétés", property_types_path, class: "sub-link" %>
+            </li>
+             
           </ul>
         </li>
+
 
         
         <li class="br-menu-item">
@@ -116,30 +88,17 @@
             </li>
 
             <li class="sub-item">
-                <%= link_to  "Catégories produits", product_categories_path, class: "sub-link" %>
+                <%= link_to  "Types de locataires", tenant_types_path, class: "sub-link" %>
             </li>
 
             <li class="sub-item">
-                <%= link_to  "Types de mouvement", movement_types_path, class: "sub-link" %>
+                <%= link_to  "Types de propriétaires", landlord_types_path, class: "sub-link" %>
             </li>
-             <li class="sub-item">
-                <%= link_to  "Types de matériel", material_types_path, class: "sub-link" %>
-            </li>
+
             <li class="sub-item">
-                <%= link_to  "Types d'entrepôt", store_types_path, class: "sub-link" %>
+                <%= link_to  "Types de propriétés", property_types_path, class: "sub-link" %>
             </li>
-            <li class="sub-item">
-                <%= link_to  "Types de client", customer_types_path, class: "sub-link" %>
-            </li>
-             <li class="sub-item">
-                <%= link_to  "Types de forunisseur", provider_types_path, class: "sub-link" %>
-            </li>
-             <li class="sub-item">
-                <%= link_to  "Entrepôts", stores_path, class: "sub-link" %>
-            </li>
-            <li class="sub-item">
-                <%= link_to  "Unités", unities_path, class: "sub-link" %>
-            </li>
+             
           </ul>
         </li>
        

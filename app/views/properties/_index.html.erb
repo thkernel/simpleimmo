@@ -1,0 +1,29 @@
+<% @properties.each do |property| %>
+      <tr>
+        <td><%= property.building %></td>
+        <td><%= property.landlord %></td>
+        <td><%= property.property_type %></td>
+        <td><%= property.reference %></td>
+        <td><%= property.description %></td>
+        <td><%= property.pieces_number %></td>
+        <td><%= property.room_number %></td>
+        <td><%= property.bath_room %></td>
+        <td><%= property.rent_excluding_tax %></td>
+        <td><%= property.address %></td>
+        <td><%= property.city %></td>
+        
+        <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_property_path(property), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), property_delete_path(property), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+
+      </tr>
+    <% end %>
