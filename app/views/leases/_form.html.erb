@@ -1,137 +1,186 @@
-<%= form_with(model: lease, local: true) do |form| %>
-  <% if lease.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(lease.errors.count, "error") %> prohibited this lease from being saved:</h2>
+<%= form_with(model: lease, local: false) do |form| %>
+  <div class="modal-body">
+  
+        <ul class="errors">
+        </ul>
 
-      <ul>
-      <% lease.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="row">
+      <div class="col-md-5">
+
+        <div class="form-group">
+          <%= form.label :tenant_id, "Locataire", class: "required" %>
+          <%= form.collection_select(:tenant_id, @tenants, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control") %> 
+        </div>
+      </div>
+
+      <div class="col-md-7">
+
+        <div class="form-group">
+          <%= form.label :building_id, "Immeuble" %>
+          <%= form.collection_select(:building_id, @buildings, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
+        </div>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :tenant_id %>
-    <%= form.text_field :tenant_id %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <%= form.label :property_id, "Propriété", class: "required" %>
+        <%= form.collection_select(:property_id, @properties, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="form-group">
+        <%= form.label :usage_type, "Usage", class: "required" %>
+        <%= form.select :usage_type, USAGE_TYPE, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :building_id %>
-    <%= form.number_field :building_id %>
+  <div class="row">
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :start_date, "Date début", class: "required" %>
+        <%= form.date_field :start_date, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :end_date, "Date fin", class: "required" %>
+        <%= form.date_field :end_date, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :effective_date, "Date d'effet", class: "required" %>
+        <%= form.date_field :effective_date, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :duration, "Durée" %>
+        <%= form.text_field :duration, class: "form-control", placeholder: "Durée" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :property_id %>
-    <%= form.number_field :property_id %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :id_type, "Type de pièce" %>
+        <%= form.select :id_type, TYPE_ID, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :id_number, "N°Pièce" %>
+        <%= form.text_field :id_number, class: "form-control", placeholder: "N°Pièce" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :periodicity, "Périodicité", class: "required" %>
+        <%= form.select :periodicity, PERIODICITY, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :payment_method , "Methode de paiement", class: "required" %>
+        <%= form.select :payment_method, PAYMENT_METHODS, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :usage_type %>
-    <%= form.text_field :usage_type %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :payment_date, "Date paiement" %>
+        <%= form.select :payment_date, PAYMENT_DATE, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :receipt_date, "Date quittance" %>
+        <%= form.select :payment_date, RECEIPT_DATE, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :rent_excluding_tax, "Loyer HT" %>
+        <%= form.number_field :rent_excluding_tax, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :vat_rate, "TVA", class: "required" %>
+        <%= form.number_field :vat_rate, class: "form-control", required: true %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.datetime_select :start_date %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.check_box :vat_paid_by_tenant %>
+        <%= form.label :vat_paid_by_tenant, "TVA payée le locataire?" %>
+        
+      </div>
+
+      <div class="form-group">
+        <%= form.check_box :renewable %>
+        <%= form.label :renewable, "Rénouvellable?" %>
+        
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :net_amount, "Montant Net" %>
+        <%= form.number_field :net_amount, class: "form-control" %>
+      </div>
+    </div>
+
+  
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :guarantee_amount, "Montant caution" %>
+        <%= form.number_field :guarantee_amount, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :avance, "Montant avance" %>
+        <%= form.number_field :avance, class: "form-control" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.datetime_select :end_date %>
-  </div>
+  <div class="row">
+    <div class="col-md-12">
 
-  <div class="field">
-    <%= form.label :effective_date %>
-    <%= form.datetime_select :effective_date %>
-  </div>
+      <div class="form-group">
+        <%= form.label :notes, "Notes" %>
+        <%= form.text_area :notes, class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :duration %>
-    <%= form.text_field :duration %>
-  </div>
-
-  <div class="field">
-    <%= form.label :id_type %>
-    <%= form.text_field :id_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :id_number %>
-    <%= form.text_field :id_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :periodicity %>
-    <%= form.text_field :periodicity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :payment_method %>
-    <%= form.text_field :payment_method %>
-  </div>
-
-  <div class="field">
-    <%= form.label :payment_date %>
-    <%= form.number_field :payment_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :receipt_date %>
-    <%= form.number_field :receipt_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rent_excluding_tax %>
-    <%= form.text_field :rent_excluding_tax %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vat_rate %>
-    <%= form.text_field :vat_rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :net_amount %>
-    <%= form.text_field :net_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vat_paid_by_tenant %>
-    <%= form.check_box :vat_paid_by_tenant %>
-  </div>
-
-  <div class="field">
-    <%= form.label :guarantee_amount %>
-    <%= form.text_field :guarantee_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :avance %>
-    <%= form.text_field :avance %>
-  </div>
-
-  <div class="field">
-    <%= form.label :renewable %>
-    <%= form.check_box :renewable %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </div><!-- modal body -->
+     <div class="modal-footer">
+            <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+            <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+    </div>
 <% end %>

@@ -10,3 +10,18 @@
     border-top: 1px solid silver;
     bottom: 0;
 }
+
+.required:after { 
+    content:" *"; 
+    color: red;
+}
+
+
+
+.delete{
+    color: red;
+}
+
+.enable{
+    color:green;
+}

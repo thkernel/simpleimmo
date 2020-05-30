@@ -1,16 +1,12 @@
 <% @properties.each do |property| %>
       <tr>
-        <td><%= property.building %></td>
-        <td><%= property.landlord %></td>
-        <td><%= property.property_type %></td>
+        
+        <td><%= property_type(property.property_type_id).name %></td>
         <td><%= property.reference %></td>
-        <td><%= property.description %></td>
-        <td><%= property.pieces_number %></td>
-        <td><%= property.room_number %></td>
-        <td><%= property.bath_room %></td>
-        <td><%= property.rent_excluding_tax %></td>
-        <td><%= property.address %></td>
-        <td><%= property.city %></td>
+        <td><%= building(property.building).reference %></td>
+        <td><%= landlord(property.landlord_id).full_name %></td>
+        <td><%= city(property.city_id).name %></td>
+        <td><%= property.neighborhood %></td>
         
         <td>
             <div class="action-buttons">

@@ -13,4 +13,10 @@
 
 class PropertyType < ApplicationRecord
   belongs_to :user
+
+  # Validations
+
+	validates :name, presence: true, uniqueness: true
+
+
 end

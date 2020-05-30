@@ -1,0 +1,20 @@
+<% @landlords.each do |landlord| %>
+  <tr>
+    <td><%= landlord_type(landlord.landlord_type_id).name %></td>
+    <td><%= landlord.civility %></td>
+    <td><%= landlord.last_name %></td>
+    <td><%= landlord.first_name %></td>
+    <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_landlord_path(landlord), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), landlord_delete_path(landlord), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+  </tr>
+<% end %>

@@ -1,65 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h3>Propriétaires</h3></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody">
+  <div class="br-section-wrapper">
+<div class="headers mg-b-20">
+    <div class="left-content">
+    </div>
 
-<h1>Landlords</h1>
+    <div class="text-right">
+        <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_landlord_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
-<table>
+    </div>
+
+</div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
+  
+
   <thead>
     <tr>
-      <th>Landlord type</th>
-      <th>Civility</th>
-      <th>Last name</th>
-      <th>First name</th>
-      <th>Birth date</th>
-      <th>Birth place</th>
-      <th>Id type</th>
-      <th>Id number</th>
-      <th>Id expiration</th>
-      <th>Profession</th>
-      <th>Nationality</th>
-      <th>Company name</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>City</th>
-      <th>Country</th>
-      <th>Email</th>
-      <th>About</th>
-      <th>User</th>
-      <th>Status</th>
-      <th colspan="3"></th>
+      <th>Type</th>
+      <th>Civilité</th>
+      <th>Nom</th>
+      <th>Prénoms</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @landlords.each do |landlord| %>
-      <tr>
-        <td><%= landlord.landlord_type %></td>
-        <td><%= landlord.civility %></td>
-        <td><%= landlord.last_name %></td>
-        <td><%= landlord.first_name %></td>
-        <td><%= landlord.birth_date %></td>
-        <td><%= landlord.birth_place %></td>
-        <td><%= landlord.id_type %></td>
-        <td><%= landlord.id_number %></td>
-        <td><%= landlord.id_expiration %></td>
-        <td><%= landlord.profession %></td>
-        <td><%= landlord.nationality %></td>
-        <td><%= landlord.company_name %></td>
-        <td><%= landlord.address %></td>
-        <td><%= landlord.phone %></td>
-        <td><%= landlord.city %></td>
-        <td><%= landlord.country %></td>
-        <td><%= landlord.email %></td>
-        <td><%= landlord.about %></td>
-        <td><%= landlord.user %></td>
-        <td><%= landlord.status %></td>
-        <td><%= link_to 'Show', landlord %></td>
-        <td><%= link_to 'Edit', edit_landlord_path(landlord) %></td>
-        <td><%= link_to 'Destroy', landlord, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody class="landlords">
+    <%=render "index"%>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Landlord', new_landlord_path %>
+</div>
+</div>
+<div id="landlord-modal" class="modal fade" data-backdrop="static"></div>

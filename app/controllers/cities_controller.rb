@@ -1,5 +1,9 @@
 class CitiesController < ApplicationController
+
+  before_action :authenticate_user!
+
   before_action :set_city, only: [:show, :edit, :update, :destroy]
+  layout "dashboard"
 
   # GET /cities
   # GET /cities.json
@@ -24,15 +28,18 @@ class CitiesController < ApplicationController
   # POST /cities
   # POST /cities.json
   def create
-    @city = City.new(city_params)
+    @city = current_user.cities.build(city_params)
 
     respond_to do |format|
       if @city.save
+        @cities = City.all
         format.html { redirect_to @city, notice: 'City was successfully created.' }
         format.json { render :show, status: :created, location: @city }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @city.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,14 +49,22 @@ class CitiesController < ApplicationController
   def update
     respond_to do |format|
       if @city.update(city_params)
+        @cities = City.all
         format.html { redirect_to @city, notice: 'City was successfully updated.' }
         format.json { render :show, status: :ok, location: @city }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @city.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
+
+
+    def delete
+      @city = City.find(params[:city_id])
+    end
 
   # DELETE /cities/1
   # DELETE /cities/1.json
@@ -69,6 +84,6 @@ class CitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def city_params
-      params.require(:city).permit(:name, :status, :user_id)
+      params.require(:city).permit(:name)
     end
 end

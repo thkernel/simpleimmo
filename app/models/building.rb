@@ -22,4 +22,11 @@ class Building < ApplicationRecord
   belongs_to :landlord
   belongs_to :city
   belongs_to :user
+
+
+  # Validations
+
+  validates :reference, presence: true, uniqueness: true
+
+
 end

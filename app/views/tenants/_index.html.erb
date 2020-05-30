@@ -1,6 +1,6 @@
 <% @tenants.each do |tenant| %>
   <tr>
-    <td><%= tenant.tenant_type %></td>
+    <td><%= tenant_type(tenant.tenant_type_id).name %></td>
     <td><%= tenant.civility %></td>
     <td><%= tenant.last_name %></td>
     <td><%= tenant.first_name %></td>

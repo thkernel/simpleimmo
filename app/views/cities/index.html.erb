@@ -1,31 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h3>Villes</h3></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody">
+  <div class="br-section-wrapper">
+<div class="headers mg-b-20">
+    <div class="left-content">
+    </div>
 
-<h1>Cities</h1>
+    <div class="text-right">
+        <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_city_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
-<table>
+    </div>
+
+</div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
+  
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>Nom</th>
+      
+      <th>Actions</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @cities.each do |city| %>
-      <tr>
-        <td><%= city.name %></td>
-        <td><%= city.status %></td>
-        <td><%= city.user %></td>
-        <td><%= link_to 'Show', city %></td>
-        <td><%= link_to 'Edit', edit_city_path(city) %></td>
-        <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  
+  <tbody class="cities">
+    <%= render "index"%>
   </tbody>
 </table>
+</div>
+</div>
+<div id="city-modal" class="c-modal modal fade" data-backdrop="static"></div>
 
-<br>
-
-<%= link_to 'New City', new_city_path %>

@@ -1,117 +1,156 @@
-<%= form_with(model: landlord, local: true) do |form| %>
-  <% if landlord.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(landlord.errors.count, "error") %> prohibited this landlord from being saved:</h2>
-
-      <ul>
-      <% landlord.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_with(model: landlord, local: false) do |form| %>
+  <div class="modal-body">
+  
+    <ul class="errors">
+    </ul>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :landlord_type_id, "Type", class: "required" %>
+          
+          <%= form.collection_select(:landlord_type_id, @landlord_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :company_name, "Société" %>
+            <%= form.text_field :company_name, class: "form-control", placeholder: "Société" %>
+          </div>
+        </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :landlord_type_id %>
-    <%= form.text_field :landlord_type_id %>
-  </div>
+      <div class="row">
 
-  <div class="field">
-    <%= form.label :civility %>
-    <%= form.text_field :civility %>
-  </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :civility, "Civilité" %>
+            <%= form.select :civility, CIVILITY, {prompt: "Sélectionner"}, class: "form-control" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :last_name, "Nom" %>
+            <%= form.text_field :last_name, class: "form-control", placeholder: "Nom" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :first_name, "Prénom" %>
+            <%= form.text_field :first_name, class: "form-control" , placeholder: "Prénom"%>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :birth_date %>
-    <%= form.datetime_select :birth_date %>
-  </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :birth_date, "Date de naissance" %>
+            <%= form.date_field :birth_date, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :birth_place, "Lieu de naissance" %>
+            <%= form.text_field :birth_place, class: "form-control", placeholder: "Lieu de naissance" %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :birth_place %>
-    <%= form.text_field :birth_place %>
-  </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :id_type, "Type de pièce" %>
+            <%= form.select :id_type, TYPE_ID, {prompt: "Sélectionner"}, class: "form-control" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :id_type %>
-    <%= form.text_field :id_type %>
-  </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :id_number, "N°Pièce" %>
+            <%= form.text_field :id_number, class: "form-control", placeholder: "N°Pièce"  %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :id_expiration, "Date d'expiration" %>
+            <%= form.text_field :id_expiration, class: "form-control", placeholder: "Date d'expiration" %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :id_number %>
-    <%= form.text_field :id_number %>
-  </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :profession, "Profession" %>
+            <%= form.text_field :profession, class: "form-control", placeholder: "Profession" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :id_expiration %>
-    <%= form.text_field :id_expiration %>
-  </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :nationality, "Nationalité" %>
+            <%= form.text_field :nationality , class: "form-control", placeholder: "Nationalité" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :profession %>
-    <%= form.text_field :profession %>
-  </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :email, "Email" %>
+            <%= form.text_field :email, class: "form-control", placeholder: "Email" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :nationality %>
-    <%= form.text_field :nationality %>
-  </div>
+        
+      </div>
 
-  <div class="field">
-    <%= form.label :company_name %>
-    <%= form.text_field :company_name %>
-  </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label :address, "Adresse", class: "required" %>
+            <%= form.text_field :address, class: "form-control", placeholder: "Adresse", required: true %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :phone, "Téléphone", class: "required" %>
+            <%= form.text_field :phone, class: "form-control", placeholder: "Téléphone", required: true %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :city, "Ville" , class: "required" %>
+            <%= form.text_field :city, class: "form-control", placeholder: "Ville", required: true %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label :country, "Pays", class: "required" %>
+            <%= form.text_field :country, class: "form-control", placeholder: "Pays", required: true %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label :about , "Notes" %>
+            <%= form.text_area :about, class: "form-control", placeholder: "Notes" %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+  
 
-  <div class="field">
-    <%= form.label :about %>
-    <%= form.text_area :about %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+   </div><!-- modal body -->
+     <div class="modal-footer">
+            <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+            <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+    </div>
 <% end %>

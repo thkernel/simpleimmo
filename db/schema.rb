@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_085816) do
   end
 
   create_table "mandates", force: :cascade do |t|
-    t.bigint "landlord_id"
+    t.integer "landlord_id"
     t.integer "building_id"
     t.integer "property_id"
     t.string "usage_type"
@@ -177,7 +177,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_085816) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["landlord_id"], name: "index_mandates_on_landlord_id"
     t.index ["user_id"], name: "index_mandates_on_user_id"
   end
 
@@ -353,7 +352,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_085816) do
   add_foreign_key "landlords", "users"
   add_foreign_key "leases", "tenants"
   add_foreign_key "leases", "users"
-  add_foreign_key "mandates", "landlords"
   add_foreign_key "mandates", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "properties", "cities"

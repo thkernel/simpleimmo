@@ -1,7 +1,7 @@
 class CreateMandates < ActiveRecord::Migration[5.2]
   def change
     create_table :mandates do |t|
-      t.references :landlord, foreign_key: true
+      t.integer :landlord_id
       t.integer :building_id
       t.integer :property_id
       t.string :usage_type

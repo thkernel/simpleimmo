@@ -31,4 +31,10 @@ class Property < ApplicationRecord
   belongs_to :property_type
   belongs_to :city
   belongs_to :user
+
+
+  # Validations
+
+	validates :reference, presence: true, uniqueness: true
+
 end

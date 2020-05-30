@@ -1,107 +1,139 @@
-<%= form_with(model: mandate, local: true) do |form| %>
-  <% if mandate.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(mandate.errors.count, "error") %> prohibited this mandate from being saved:</h2>
+<%= form_with(model: mandate, local: false) do |form| %>
+  <div class="modal-body">
+  
+        <ul class="errors">
+        </ul>
 
-      <ul>
-      <% mandate.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  
+
+  <div class="row">
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= form.label :building_id, "Immeuble" %>
+        <%= form.collection_select(:building_id, @buildings, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
+        
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :landlord_id %>
-    <%= form.text_field :landlord_id %>
+    <div class="col-md-5">
+      <div class="form-group">
+        <%= form.label :property_id, "Propriété", class: "required" %>
+        <%= form.collection_select(:property_id, @properties, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :building_id %>
-    <%= form.number_field :building_id %>
+  
+
+    
   </div>
 
-  <div class="field">
-    <%= form.label :property_id %>
-    <%= form.number_field :property_id %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :usage_type, "Usage", class: "required"  %>
+        <%= form.select :usage_type, USAGE_TYPE, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+
+  
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :start_date, "Date début", class: "required" %>
+        <%= form.date_field :start_date, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :end_date, "Date fin", class: "required" %>
+        <%= form.date_field :end_date, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :duration, "Durée" %>
+        <%= form.text_field :duration, class: "form-control", placeholder: "Durée" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :usage_type %>
-    <%= form.text_field :usage_type %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :id_type, "Type de pièce" %>
+        <%= form.select :id_type, TYPE_ID, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :id_number, "N°Pièce" %>
+        <%= form.text_field :id_number, class: "form-control", placeholder: "N°Pièce" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.datetime_select :start_date %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :periodicity, "Périodicité", class: "required" %>
+        <%= form.select :periodicity, PERIODICITY, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :property_value, "Valeur", class: "required" %>
+        <%= form.number_field :property_value, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :commission_rate, "Taux de commission (%)", class: "required" %>
+        <%= form.number_field :commission_rate, class: "form-control", required: true %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.datetime_select :end_date %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :commission_amount, "Montant commission", class: "required" %>
+        <%= form.number_field :commission_amount, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :vat_rate, "TVA (%)", class: "required" %>
+        <%= form.number_field :vat_rate, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :net_amount, "Montant Net", class: "required" %>
+        <%= form.number_field :net_amount, class: "form-control", required: true %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :duration %>
-    <%= form.text_field :duration %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :notes, "Notes" %>
+        <%= form.text_area :notes, class: "form-control", placeholder: "Notes" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :id_type %>
-    <%= form.text_field :id_type %>
-  </div>
+ 
 
-  <div class="field">
-    <%= form.label :id_number %>
-    <%= form.text_field :id_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :periodicity %>
-    <%= form.text_field :periodicity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :property_value %>
-    <%= form.text_field :property_value %>
-  </div>
-
-  <div class="field">
-    <%= form.label :commission_rate %>
-    <%= form.text_field :commission_rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :commission_amount %>
-    <%= form.text_field :commission_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vat_rate %>
-    <%= form.text_field :vat_rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :net_amount %>
-    <%= form.text_field :net_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </div><!-- modal body -->
+     <div class="modal-footer">
+            <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+            <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+    </div>
 <% end %>

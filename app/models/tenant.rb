@@ -30,4 +30,13 @@
 class Tenant < ApplicationRecord
   belongs_to :tenant_type
   belongs_to :user
+
+  # Validations
+
+	validates :id_number, presence: true, uniqueness: true
+
+def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end

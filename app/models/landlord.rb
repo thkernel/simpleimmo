@@ -30,4 +30,13 @@
 class Landlord < ApplicationRecord
   belongs_to :landlord_type
   belongs_to :user
+
+  # Validations
+
+	validates :id_number, presence: true, uniqueness: true
+
+def full_name
+    "#{first_name} #{last_name}"
+  end
+  
 end

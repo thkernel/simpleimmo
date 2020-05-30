@@ -1,5 +1,9 @@
 class BuildingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_building, only: [:show, :edit, :update, :destroy]
+
+  layout "dashboard"
+
 
   # GET /buildings
   # GET /buildings.json
@@ -14,22 +18,29 @@ class BuildingsController < ApplicationController
 
   # GET /buildings/new
   def new
+    @landlords = Landlord.all
+    @cities = City.all
     @building = Building.new
   end
 
   # GET /buildings/1/edit
   def edit
+    @cities = City.all
+    @landlords = Landlord.all
   end
 
   # POST /buildings
   # POST /buildings.json
   def create
-    @building = Building.new(building_params)
+    @building = current_user.buildings.build(building_params)
 
     respond_to do |format|
       if @building.save
+        @buildings = Building.all
+
         format.html { redirect_to @building, notice: 'Building was successfully created.' }
         format.json { render :show, status: :created, location: @building }
+        format.js 
       else
         format.html { render :new }
         format.json { render json: @building.errors, status: :unprocessable_entity }
@@ -42,14 +53,22 @@ class BuildingsController < ApplicationController
   def update
     respond_to do |format|
       if @building.update(building_params)
+        @buildings = Building.all
+
         format.html { redirect_to @building, notice: 'Building was successfully updated.' }
         format.json { render :show, status: :ok, location: @building }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @building.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
+    def delete
+      @building = Building.find(params[:building_id])
+    end
 
   # DELETE /buildings/1
   # DELETE /buildings/1.json
@@ -69,6 +88,6 @@ class BuildingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def building_params
-      params.require(:building).permit(:landlord_id, :reference, :apartment_number, :address, :city_id, :neighborhood, :surface, :value, :about, :status, :user_id)
+      params.require(:building).permit(:landlord_id, :reference, :apartment_number, :address, :city_id, :neighborhood, :surface, :value, :about)
     end
 end

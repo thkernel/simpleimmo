@@ -45,6 +45,8 @@
 
 $(document).on('turbolinks:load', function() {
       $('#datatable1').DataTable({
+
+        
             "searching": true,
         "ordering": true,
         language: {

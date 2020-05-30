@@ -1,5 +1,8 @@
 class LeasesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_lease, only: [:show, :edit, :update, :destroy]
+  layout "dashboard"
+
 
   # GET /leases
   # GET /leases.json
@@ -14,25 +17,35 @@ class LeasesController < ApplicationController
 
   # GET /leases/new
   def new
+    @tenants = Tenant.all
+    @buildings = Building.all
+    @properties = Property.all
     @lease = Lease.new
   end
 
   # GET /leases/1/edit
   def edit
+    @tenants = Tenant.all
+    @buildings = Building.all
+    @properties = Property.all
   end
 
   # POST /leases
   # POST /leases.json
   def create
-    @lease = Lease.new(lease_params)
+    @lease = current_user.leases.build(lease_params)
 
     respond_to do |format|
       if @lease.save
+        @leases = Lease.all
+
         format.html { redirect_to @lease, notice: 'Lease was successfully created.' }
         format.json { render :show, status: :created, location: @lease }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @lease.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,14 +55,22 @@ class LeasesController < ApplicationController
   def update
     respond_to do |format|
       if @lease.update(lease_params)
+        @leases = Lease.all
         format.html { redirect_to @lease, notice: 'Lease was successfully updated.' }
         format.json { render :show, status: :ok, location: @lease }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @lease.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
+
+
+    def delete
+      @lease = Lease.find(params[:lease_id])
+    end
 
   # DELETE /leases/1
   # DELETE /leases/1.json
@@ -69,6 +90,6 @@ class LeasesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lease_params
-      params.require(:lease).permit(:tenant_id, :building_id, :property_id, :usage_type, :start_date, :end_date, :effective_date, :duration, :id_type, :id_number, :periodicity, :payment_method, :payment_date, :receipt_date, :rent_excluding_tax, :vat_rate, :net_amount, :vat_paid_by_tenant, :guarantee_amount, :avance, :renewable, :status, :notes, :user_id)
+      params.require(:lease).permit(:tenant_id, :building_id, :property_id, :usage_type, :start_date, :end_date, :effective_date, :duration, :id_type, :id_number, :periodicity, :payment_method, :payment_date, :receipt_date, :rent_excluding_tax, :vat_rate, :net_amount, :vat_paid_by_tenant, :guarantee_amount, :avance, :renewable, :notes)
     end
 end

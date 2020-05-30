@@ -1,112 +1,154 @@
-<%= form_with(model: property, local: true) do |form| %>
-  <% if property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+<%= form_with(model: property, local: false) do |form| %>
+   <div class="modal-body">
+  
+        <ul class="errors">
+        </ul>
 
-      <ul>
-      <% property.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :property_type_id, "Type", class: "required" %>
+        <%= form.collection_select(:property_type_id, @property_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :building %>
-    <%= form.number_field :building %>
   </div>
 
-  <div class="field">
-    <%= form.label :landlord_id %>
-    <%= form.text_field :landlord_id %>
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <%= form.label :building, "Immeuble" %>
+        <%= form.collection_select(:building, @buildings, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <%= form.label :landlord_id, "Propriétaire", class: "required" %>
+        <%= form.collection_select(:landlord_id, @landlords, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :property_type_id %>
-    <%= form.text_field :property_type_id %>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :reference, "Référence/Identifiant", class: "required"  %>
+        <%= form.text_field :reference, class: "form-control", placeholder: "Référence/Identifiant", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :description, "Description" %>
+        <%= form.text_field :description, class: "form-control", placeholder: "Description" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :reference %>
-    <%= form.text_field :reference %>
+  
+
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :pieces_number, "Nombre de pièces" %>
+        <%= form.number_field :pieces_number, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :room_number, "Nombre de chambres" %>
+        <%= form.number_field :room_number, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="form-groupZ">
+        <%= form.label :bath_room, "Toilletes" %>
+        <%= form.text_field :bath_room , class: "form-control", placeholder: "Nombre de toillets" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :address, "Adresse", class: "required" %>
+        <%= form.text_field :address, class: "form-control", placeholder: "Adresse", required: true %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :pieces_number %>
-    <%= form.number_field :pieces_number %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :city_id, "Ville", class: "required" %>
+        <%= form.collection_select(:city_id, @cities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :neighborhood, "Quartier", class: "required" %>
+        <%= form.text_field :neighborhood, class: "form-control", placeholder: "Quartier", required: true%>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :street, "Rue" %>
+        <%= form.text_field :street, class: "form-control", placeholder: "Rue" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :door, "Porte" %>
+        <%= form.text_field :door, class: "form-control", placeholder: "Porte" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :room_number %>
-    <%= form.number_field :room_number %>
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <%= form.label :surface, "Surface (m2)" %>
+        <%= form.number_field :surface, class: "form-control"  %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+
+      <div class="form-group">
+        <%= form.label :rent_excluding_tax, "Loyer HT", class: "required" %>
+        <%= form.number_field :rent_excluding_tax, class: "form-control" , required: true %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :bath_room %>
-    <%= form.text_field :bath_room %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :about, "Notes" %>
+        <%= form.text_area :about, class: "form-control", placeholder: "Notes" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :rent_excluding_tax %>
-    <%= form.text_field :rent_excluding_tax %>
-  </div>
+  
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :city_id %>
-    <%= form.text_field :city_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :neighborhood %>
-    <%= form.text_field :neighborhood %>
-  </div>
-
-  <div class="field">
-    <%= form.label :street %>
-    <%= form.text_field :street %>
-  </div>
-
-  <div class="field">
-    <%= form.label :door %>
-    <%= form.text_field :door %>
-  </div>
-
-  <div class="field">
-    <%= form.label :surface %>
-    <%= form.text_field :surface %>
-  </div>
-
-  <div class="field">
-    <%= form.label :value %>
-    <%= form.text_field :value %>
-  </div>
-
-  <div class="field">
-    <%= form.label :about %>
-    <%= form.text_area :about %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </div><!-- modal body -->
+     <div class="modal-footer">
+            <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+            <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+    </div>
 <% end %>

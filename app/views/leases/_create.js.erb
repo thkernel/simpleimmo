@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @lease.errors.any? %>
+  <% @lease.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".leases").html("<%= escape_javascript(render 'index') %>");
+  $("#lease-modal").modal("hide");
+ 
+<% end %>

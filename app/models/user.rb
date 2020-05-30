@@ -48,7 +48,10 @@ class User < ApplicationRecord
 	has_many :properties, dependent: :destroy
 	has_many :landlord_types, dependent: :destroy
 	has_many :landlords, dependent: :destroy
-	#has_many :l, dependent: :destroy
+	has_many :cities, dependent: :destroy
+	has_many :buildings, dependent: :destroy
+	has_many :mandates, dependent: :destroy
+	has_many :leases, dependent: :destroy
 
     # Add nested attributes for profile.
 	accepts_nested_attributes_for :profile

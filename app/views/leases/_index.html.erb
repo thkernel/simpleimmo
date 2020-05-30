@@ -1,0 +1,19 @@
+<% @leases.each do |lease| %>
+      <tr>
+        <td><%= tenant(lease.tenant_id).full_name %></td>
+        <td><%= property(lease.property_id).reference %></td>
+        <td><%= lease.usage_type %></td>
+        <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_lease_path(lease), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), lease_delete_path(lease), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+      </tr>
+    <% end %>

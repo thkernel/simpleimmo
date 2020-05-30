@@ -1,0 +1,19 @@
+<% @mandates.each do |mandate| %>
+      <tr>
+       
+        <td><%= property(mandate.property_id).reference  %></td>
+        <td><%= mandate.usage_type %></td>
+        <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_mandate_path(mandate), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), mandate_delete_path(mandate), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+      </tr>
+    <% end %>
