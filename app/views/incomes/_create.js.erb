@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @income.errors.any? %>
+  <% @income.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".incomes").html("<%= escape_javascript(render 'index') %>");
+  $("#income-modal").modal("hide");
+ 
+<% end %>

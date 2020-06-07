@@ -43,37 +43,32 @@
           <%= link_to  raw('<i class="fa fa-check-square-o tx-20"></i> <span class="menu-item-label">Etats des lieux</span>'), handovers_path, class: "br-menu-link" %>
         </li> 
 
-        <li class="br-menu-item">
-          <%= link_to  raw('<i class="fa fa-money tx-20"></i> <span class="menu-item-label">Paiements</span>'), mandates_path, class: "br-menu-link" %>
-        </li>
-
-
-        <li class="br-menu-item">
+         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub">
             <i class="fa fa-line-chart tx-20"></i>
-            <span class="menu-item-label">Situations</span>
+            <span class="menu-item-label">Comptabilité</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
             
             <li class="sub-item">
-                <%= link_to  "Utilisateurs", all_users_path, class: "sub-link" %>
+                <%= link_to  "Recettes", incomes_path, class: "sub-link" %>
             </li>
 
             <li class="sub-item">
-                <%= link_to  "Types de locataires", tenant_types_path, class: "sub-link" %>
+                <%= link_to  "Dépenses", expenses_path, class: "sub-link" %>
             </li>
 
             <li class="sub-item">
-                <%= link_to  "Types de propriétaires", landlord_types_path, class: "sub-link" %>
+                <%= link_to  "Situations", landlord_types_path, class: "sub-link" %>
             </li>
 
-            <li class="sub-item">
-                <%= link_to  "Types de propriétés", property_types_path, class: "sub-link" %>
-            </li>
+            
              
           </ul>
         </li>
 
+
+        
 
         
         <li class="br-menu-item">
@@ -97,6 +92,10 @@
 
             <li class="sub-item">
                 <%= link_to  "Types de propriétés", property_types_path, class: "sub-link" %>
+            </li>
+
+             <li class="sub-item">
+                <%= link_to  "Taxes", taxes_path, class: "sub-link" %>
             </li>
              
           </ul>

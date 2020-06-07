@@ -1,0 +1,114 @@
+<%= form_with(model: income, local: false) do |form| %>
+   <div class="modal-body">
+  
+        <ul class="errors">
+        </ul>
+
+  <div class="form-group">
+    <%= form.label :property_id, "Propriéte", class: "required" %>
+    <%= form.collection_select(:property_id, @properties, :id, :reference, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :lease_id, "Location", class: "required" %>
+         <%= form.collection_select(:lease_id, @leases, :id, :id, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :type, "Type", class: "required" %>
+         <%= form.select :type, INCOME_TYPE, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :start_date, "Date début", class: "required" %>
+        <%= form.date_field :start_date, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <%= form.label :end_date, "Date fin", class: "required" %>
+        <%= form.date_field :end_date, class: "form-control", required: true %>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :payment_method, "Méthode de paiement", class: "required" %>
+        <%= form.select :payment_method, PAYMENT_METHODS, {prompt: "Sélectionner"}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :amount, "Montant dû", class: "required" %>
+        <%= form.number_field :amount, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :received_amount, "Montant reçus" %>
+        <%= form.number_field :received_amount, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :tax_id , "TVA" %>
+        <%= form.collection_select(:tax_id, @taxes, :id, :name, {prompt: "Sélectionner"}, class: "form-control") %> 
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :payer , "Payeur", class: "required"%>
+        <%= form.text_field :payer, class: "form-control", placeholder: "Payeur", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :receipt_number , "N°Quittance"%>
+        <%= form.text_field :receipt_number, class: "form-control", placeholder: "N°Quittance"%>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :description , "Description"%>
+        <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+  </div><!-- modal body -->
+     <div class="modal-footer">
+            <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+            <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+    </div>
+<% end %>

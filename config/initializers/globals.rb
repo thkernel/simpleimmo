@@ -6,3 +6,5 @@ PERIODICITY = [["Mensuelle"], ["Bi-mensuelle"], ["Trimestrielle"], ["Semestriell
 PAYMENT_METHODS = [["Espèce"], ["Virement bancaire"], ["Transfert"], ["Autres"]]
 PAYMENT_DATE = Array.new(31) { |i| [i+1] }
 RECEIPT_DATE = Array.new(31) { |i| [i+1] }
+INCOME_TYPE = [["Loyer"], ["Dépôt de garantie"]]
+EXPENSE_TYPE = [["Taxes et impôts"], ["Travaux"], ["Rembourssement du dépôt de garantie"], ["Autres dépense"]]

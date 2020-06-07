@@ -1,0 +1,19 @@
+<% @taxes.each do |tax| %>
+      <tr>
+        <td><%= tax.name %></td>
+        <td><%= tax.rate %></td>
+        <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_tax_path(tax), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), tax_delete_path(tax), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+        
+      </tr>
+    <% end %>

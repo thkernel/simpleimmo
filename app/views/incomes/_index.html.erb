@@ -1,0 +1,19 @@
+<% @incomes.each do |income| %>
+      <tr>
+        <td><%= income.property_id %></td>
+        <td><%= income.type %></td>
+        <td><%= income.payer %></td>
+        <td>
+            <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_income_path(income), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), income_delete_path(income), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+        </td>
+      </tr>
+    <% end %>

@@ -3,7 +3,7 @@ class MandatesController < ApplicationController
 
   before_action :set_mandate, only: [:show, :edit, :update, :destroy]
 
-layout "dashboard"
+  layout "dashboard"
   # GET /mandates
   # GET /mandates.json
   def index

@@ -3,7 +3,7 @@
 # Table name: mandates
 #
 #  id                :bigint           not null, primary key
-#  landlord_id       :bigint
+#  landlord_id       :integer
 #  building_id       :integer
 #  property_id       :integer
 #  usage_type        :string

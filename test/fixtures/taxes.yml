@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: taxes
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  rate        :float
+#  description :text
+#  status      :string
+#  user_id     :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  rate: MyString
+  description: MyText
+  status: MyString
+  user: one
+
+two:
+  name: MyString
+  rate: MyString
+  description: MyText
+  status: MyString
+  user: two

@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  
+  resources :expenses do 
+    get "delete"
+  end
+  resources :incomes do 
+    get "delete"
+  end
+  resources :payments do 
+    get "delete"
+  end
+  
+  resources :taxes do 
+    get "delete"
+  end
   resources :organizations do 
     get "delete"
   end

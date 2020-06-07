@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @expense.property %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @expense.type %>
+</p>
+
+<p>
+  <strong>Payer:</strong>
+  <%= @expense.payer %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @expense.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @expense.end_date %>
+</p>
+
+<p>
+  <strong>Payment method:</strong>
+  <%= @expense.payment_method %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @expense.amount %>
+</p>
+
+<p>
+  <strong>Received amount:</strong>
+  <%= @expense.received_amount %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @expense.tax_id %>
+</p>
+
+<p>
+  <strong>Total amount:</strong>
+  <%= @expense.total_amount %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @expense.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @expense.user %>
+</p>
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>

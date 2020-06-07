@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @income.property %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @income.type %>
+</p>
+
+<p>
+  <strong>Payer:</strong>
+  <%= @income.payer %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @income.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @income.end_date %>
+</p>
+
+<p>
+  <strong>Payment method:</strong>
+  <%= @income.payment_method %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @income.amount %>
+</p>
+
+<p>
+  <strong>Received amount:</strong>
+  <%= @income.received_amount %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @income.tax_id %>
+</p>
+
+<p>
+  <strong>Total amount:</strong>
+  <%= @income.total_amount %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @income.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @income.user %>
+</p>
+
+<%= link_to 'Edit', edit_income_path(@income) %> |
+<%= link_to 'Back', incomes_path %>
