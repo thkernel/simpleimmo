@@ -15,6 +15,8 @@
 #  tax_id          :integer
 #  total_amount    :float
 #  receipt_number  :string
+#  month           :integer
+#  year            :integer
 #  status          :string
 #  description     :text
 #  user_id         :bigint

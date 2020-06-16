@@ -9,7 +9,7 @@ class CreateLandlords < ActiveRecord::Migration[5.2]
       t.string :birth_place
       t.string :id_type
       t.string :id_number
-      t.string :id_expiration
+      t.datetime :id_expiration
       t.string :profession
       t.string :nationality
       t.string :company_name

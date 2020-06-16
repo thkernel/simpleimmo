@@ -22,12 +22,33 @@ Rails.application.routes.draw do
   end
   resources :leases do 
     get "delete"
+
+    collection do  
+        get "get_available_properties" => "leases#get_available_properties"
+        get "get_property_rent" => "leases#get_property_rent"
+
+    end
   end
   resources :mandates do 
     get "delete"
+
+    collection do  
+        get "get_properties" => "mandates#get_properties"
+        #get "get_property_rent" => "leases#get_property_rent"
+
+    end
+    
   end
+
   resources :properties do 
     get "delete"
+    
+    collection do  
+        get "get_landlord" => "properties#get_landlord"
+        #get "get_prestation_amount" => "receipts#get_prestation_amount"
+
+    end
+    
   end
   resources :buildings do 
     get "delete"

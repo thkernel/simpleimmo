@@ -18,8 +18,8 @@
     <div class="col-md-6">
 
       <div class="form-group">
-        <%= form.label :building, "Immeuble" %>
-        <%= form.collection_select(:building, @buildings, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
+        <%= form.label :building_id, "Immeuble" %>
+        <%= form.collection_select(:building_id, @buildings, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
       </div>
     </div>
 
@@ -56,14 +56,14 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= form.label :pieces_number, "Nombre de pièces" %>
-        <%= form.number_field :pieces_number, class: "form-control" %>
+        <%= form.number_field :pieces_number, class: "form-control", lang: "fr", step: "1", value: (property.pieces_number.present? ? property.pieces_number : 0) %>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="form-group">
         <%= form.label :room_number, "Nombre de chambres" %>
-        <%= form.number_field :room_number, class: "form-control" %>
+        <%= form.number_field :room_number, class: "form-control", lang: "fr", step: "1", value: (property.room_number.present? ? property.room_number : 0) %>
       </div>
     </div>
 
@@ -120,7 +120,7 @@
 
       <div class="form-group">
         <%= form.label :surface, "Surface (m2)" %>
-        <%= form.number_field :surface, class: "form-control"  %>
+        <%= form.number_field :surface, class: "form-control", lang: "fr", step: "0.01", value: (property.surface.present? ? property.surface : 0.0)  %>
       </div>
     </div>
 
@@ -129,7 +129,7 @@
 
       <div class="form-group">
         <%= form.label :rent_excluding_tax, "Loyer HT", class: "required" %>
-        <%= form.number_field :rent_excluding_tax, class: "form-control" , required: true %>
+        <%= form.number_field :rent_excluding_tax, class: "form-control" , lang: "fr", step: "0.01", value: (property.rent_excluding_tax.present? ? property.rent_excluding_tax : 0.0), min: "1", required: true %>
       </div>
     </div>
   </div>

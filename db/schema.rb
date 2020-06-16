@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(version: 2020_06_07_152912) do
     t.integer "tax_id"
     t.float "total_amount"
     t.string "receipt_number"
+    t.integer "month"
+    t.integer "year"
     t.string "status"
     t.text "description"
     t.bigint "user_id"
@@ -149,7 +151,7 @@ ActiveRecord::Schema.define(version: 2020_06_07_152912) do
     t.string "birth_place"
     t.string "id_type"
     t.string "id_number"
-    t.string "id_expiration"
+    t.datetime "id_expiration"
     t.string "profession"
     t.string "nationality"
     t.string "company_name"
@@ -260,7 +262,7 @@ ActiveRecord::Schema.define(version: 2020_06_07_152912) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer "building"
+    t.integer "building_id"
     t.bigint "landlord_id"
     t.bigint "property_type_id"
     t.string "reference"
@@ -299,6 +301,7 @@ ActiveRecord::Schema.define(version: 2020_06_07_152912) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.text "description"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -343,7 +346,7 @@ ActiveRecord::Schema.define(version: 2020_06_07_152912) do
     t.string "birth_place"
     t.string "id_type"
     t.string "id_number"
-    t.string "id_expiration"
+    t.datetime "id_expiration"
     t.string "profession"
     t.string "nationality"
     t.string "company_name"

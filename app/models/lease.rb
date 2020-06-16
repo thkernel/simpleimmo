@@ -34,4 +34,6 @@
 class Lease < ApplicationRecord
   belongs_to :tenant
   belongs_to :user
+
+  belongs_to :property
 end

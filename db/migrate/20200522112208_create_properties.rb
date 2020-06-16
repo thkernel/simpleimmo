@@ -1,7 +1,7 @@
 class CreateProperties < ActiveRecord::Migration[5.2]
   def change
     create_table :properties do |t|
-      t.integer :building
+      t.integer :building_id
       t.references :landlord, foreign_key: true
       t.references :property_type, foreign_key: true
       t.string :reference

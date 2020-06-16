@@ -3,10 +3,11 @@
         
         <td><%= property_type(property.property_type_id).name %></td>
         <td><%= property.reference %></td>
-        <td><%= building(property.building).reference %></td>
+        <td><%= building(property.building_id).reference if property.building_id.present? %></td>
         <td><%= landlord(property.landlord_id).full_name %></td>
         <td><%= city(property.city_id).name %></td>
         <td><%= property.neighborhood %></td>
+        <td><%= property.status %></td>
         
         <td>
             <div class="action-buttons">

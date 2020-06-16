@@ -27,14 +27,32 @@
 #
 
 class Property < ApplicationRecord
+
+  before_save :set_status
+
   belongs_to :landlord
   belongs_to :property_type
   belongs_to :city
   belongs_to :user
 
+  has_one :lease, dependent: :destroy
+
 
   # Validations
 
-	validates :reference, presence: true, uniqueness: true
+	#validates :reference, presence: true, uniqueness: true
+	validates_uniqueness_of :reference, presence: true, :scope => :building_id
+	#validates :reference, presence: true, uniqueness: {scope: :building_id}, if: :buildind_id?
+
+	scope :available, -> {where(status: "available")}
+
+
+	private
+
+	def set_status
+		unless self.status.present?
+			self.status = "available"
+		end
+	end
 
 end

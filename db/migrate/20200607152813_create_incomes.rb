@@ -13,6 +13,8 @@ class CreateIncomes < ActiveRecord::Migration[5.2]
       t.integer :tax_id
       t.float :total_amount
       t.string :receipt_number
+      t.integer :month
+      t.integer :year
       t.string :status
       t.text :description
       t.references :user, foreign_key: true

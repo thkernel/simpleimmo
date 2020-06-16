@@ -8,7 +8,7 @@
         <div class="form-group">
           <%= form.label :tenant_type_id, "Type", class: "required" %>
           
-          <%= form.collection_select(:tenant_type_id, @tenant_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+          <%= form.collection_select(:tenant_type_id, @tenant_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
         </div>
       </div>
       <div class="col-md-6">
@@ -75,7 +75,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <%= form.label :id_expiration, "Date d'expiration" %>
-            <%= form.text_field :id_expiration, class: "form-control", placeholder: "Date d'expiration" %>
+            <%= form.date_field :id_expiration, class: "form-control", placeholder: "Date d'expiration" %>
           </div>
         </div>
       </div>

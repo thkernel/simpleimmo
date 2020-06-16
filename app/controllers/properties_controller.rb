@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  include FilterConcern
   before_action :authenticate_user!
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   layout "dashboard"
@@ -93,6 +94,6 @@ class PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:building, :landlord_id, :property_type_id, :reference, :description, :pieces_number, :room_number, :bath_room, :rent_excluding_tax, :address, :city_id, :neighborhood, :street, :door, :surface, :value, :about)
+      params.require(:property).permit(:building_id, :landlord_id, :property_type_id, :reference, :description, :pieces_number, :room_number, :bath_room, :rent_excluding_tax, :address, :city_id, :neighborhood, :street, :door, :surface, :value, :about)
     end
 end

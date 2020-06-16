@@ -1,4 +1,7 @@
 class MandatesController < ApplicationController
+
+  include FilterConcern
+  
   before_action :authenticate_user!
 
   before_action :set_mandate, only: [:show, :edit, :update, :destroy]
@@ -20,6 +23,7 @@ class MandatesController < ApplicationController
     @landlords = Landlord.all 
     @buildings = Building.all 
     @properties = Property.all
+    @taxes = Tax.all
     @mandate = Mandate.new
   end
 
@@ -28,6 +32,7 @@ class MandatesController < ApplicationController
     @landlords = Landlord.all 
     @buildings = Building.all 
     @properties = Property.all
+    @taxes = Tax.all
   end
 
   # POST /mandates

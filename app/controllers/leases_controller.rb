@@ -1,4 +1,7 @@
 class LeasesController < ApplicationController
+
+  include FilterConcern
+  
   before_action :authenticate_user!
   before_action :set_lease, only: [:show, :edit, :update, :destroy]
   layout "dashboard"
@@ -15,11 +18,17 @@ class LeasesController < ApplicationController
   def show
   end
 
+  def get_property_rent
+    @property = Property.find(params[:data])
+  end
+  
   # GET /leases/new
   def new
     @tenants = Tenant.all
     @buildings = Building.all
-    @properties = Property.all
+    #@properties = Property.all
+    @properties = Property.available
+    @taxes = Tax.all
     @lease = Lease.new
   end
 
@@ -27,13 +36,17 @@ class LeasesController < ApplicationController
   def edit
     @tenants = Tenant.all
     @buildings = Building.all
-    @properties = Property.all
+    #@properties = Property.all
+    @properties = Property.available
+    @taxes = Tax.all
   end
 
   # POST /leases
   # POST /leases.json
   def create
     @lease = current_user.leases.build(lease_params)
+    property = Property.find(@lease.property_id)
+    property.update_column(:status, "unavailable")
 
     respond_to do |format|
       if @lease.save

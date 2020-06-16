@@ -59,21 +59,7 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :id_type, "Type de pièce" %>
-        <%= form.select :id_type, TYPE_ID, {prompt: "Sélectionner"}, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :id_number, "N°Pièce" %>
-        <%= form.text_field :id_number, class: "form-control", placeholder: "N°Pièce" %>
-      </div>
-    </div>
-  </div>
+  
 
   <div class="row">
     <div class="col-md-4">
@@ -85,14 +71,14 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= form.label :property_value, "Valeur", class: "required" %>
-        <%= form.number_field :property_value, class: "form-control", required: true %>
+        <%= form.number_field :property_value, class: "form-control", lang: "fr", step: "0.01", value: (mandate.property_value.present? ? mandate.property_value : 0.0), min: "1", required: true %>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="form-group">
         <%= form.label :commission_rate, "Taux de commission (%)", class: "required" %>
-        <%= form.number_field :commission_rate, class: "form-control", required: true %>
+        <%= form.number_field :commission_rate, class: "form-control",  lang: "fr", step: "0.01", value: (mandate.commission_rate.present? ? mandate.commission_rate : 0.0), min: "1", required: true %>
       </div>
     </div>
   </div>
@@ -101,21 +87,21 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= form.label :commission_amount, "Montant commission", class: "required" %>
-        <%= form.number_field :commission_amount, class: "form-control", required: true %>
+        <%= form.number_field :commission_amount, class: "form-control", lang: "fr", step: "0.01", value: (mandate.commission_amount.present? ? mandate.commission_amount : 0.0), min: "1", required: true, readonly: true %>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="form-group">
-        <%= form.label :vat_rate, "TVA (%)", class: "required" %>
-        <%= form.number_field :vat_rate, class: "form-control", required: true %>
+        <%= form.label :vat_rate, "Taux taxe foncière (%)", class: "required" %>
+        <%= form.collection_select(:vat_rate, @taxes, :rate, :name, {prompt: "Sélectionner"}, class: "form-control") %>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="form-group">
-        <%= form.label :net_amount, "Montant Net", class: "required" %>
-        <%= form.number_field :net_amount, class: "form-control", required: true %>
+        <%= form.label :net_amount, "Montant taxe foncière", class: "required" %>
+        <%= form.number_field :net_amount, class: "form-control", lang: "fr", step: "0.01", value: (mandate.net_amount.present? ? mandate.net_amount : 0.0), min: "1", required: true, readonly: true %>
       </div>
     </div>
   </div>

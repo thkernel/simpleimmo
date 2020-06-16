@@ -9,8 +9,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <%= form.label :landlord_id, "Propriétaire", class: "required" %>
-          
-          <%= form.collection_select(:landlord_id, @landlords, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+          <%= form.collection_select(:landlord_id, @landlords, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
         </div>
       </div>
     </div>
@@ -29,7 +28,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <%= form.label :apartment_number, "Nombre appartement", class: "required" %>
-          <%= form.number_field :apartment_number, class: "form-control",  required: true %>
+          <%= form.number_field :apartment_number, class: "form-control", lang: "fr", step: "1", value: (building.apartment_number.present? ? building.apartment_number : 0), min: "1",  required: true %>
         </div>
       </div>
     </div>
@@ -65,14 +64,14 @@
 
         <div class="form-group">
           <%= form.label :surface, "Surface (m2)" %>
-          <%= form.number_field :surface, class: "form-control" %>
+          <%= form.number_field :surface, class: "form-control", lang: "fr", step: "0.01", value: (building.surface.present? ? building.surface : 0.0)  %>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
           <%= form.label :value, "Valeur" %>
-          <%= form.number_field :value, class: "form-control" %>
+          <%= form.number_field :value, class: "form-control",  lang: "fr", step: "O.01", value: (building.value.present? ? building.value : 0.0) %>
         </div>
       </div>
     </div>

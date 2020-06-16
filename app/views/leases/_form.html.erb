@@ -34,7 +34,7 @@
 
       <div class="form-group">
         <%= form.label :usage_type, "Usage", class: "required" %>
-        <%= form.select :usage_type, USAGE_TYPE, {prompt: "Sélectionner"}, class: "form-control" %>
+        <%= form.select :usage_type, USAGE_TYPE, {prompt: "Sélectionner"}, class: "form-control" , required: true %>
       </div>
     </div>
   </div>
@@ -71,19 +71,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= form.label :id_type, "Type de pièce" %>
-        <%= form.select :id_type, TYPE_ID, {prompt: "Sélectionner"}, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= form.label :id_number, "N°Pièce" %>
-        <%= form.text_field :id_number, class: "form-control", placeholder: "N°Pièce" %>
-      </div>
-    </div>
+    
 
     <div class="col-md-3">
       <div class="form-group">
@@ -98,9 +86,7 @@
         <%= form.select :payment_method, PAYMENT_METHODS, {prompt: "Sélectionner"}, class: "form-control" %>
       </div>
     </div>
-  </div>
 
-  <div class="row">
     <div class="col-md-3">
       <div class="form-group">
         <%= form.label :payment_date, "Date paiement" %>
@@ -112,30 +98,65 @@
 
       <div class="form-group">
         <%= form.label :receipt_date, "Date quittance" %>
-        <%= form.select :payment_date, RECEIPT_DATE, {prompt: "Sélectionner"}, class: "form-control" %>
+        <%= form.select :receipt_date, RECEIPT_DATE, {prompt: "Sélectionner"}, class: "form-control" %>
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= form.label :rent_excluding_tax, "Loyer HT" %>
-        <%= form.number_field :rent_excluding_tax, class: "form-control", required: true %>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= form.label :vat_rate, "TVA", class: "required" %>
-        <%= form.number_field :vat_rate, class: "form-control", required: true %>
-      </div>
-    </div>
+    
   </div>
 
   <div class="row">
-    <div class="col-md-3">
+    
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :vat_rate, "TVA" %>
+         <%= form.collection_select(:vat_rate, @taxes, :rate, :name, {prompt: "Sélectionner"}, class: "form-control") %> 
+      </div>
+
+      
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :rent_excluding_tax, "Loyer HT" %>
+        <%= form.number_field :rent_excluding_tax, class: "form-control", lang: "fr", step: "0.01", value: (lease.rent_excluding_tax.present? ? lease.rent_excluding_tax : 0.0), min: "1", required: true, readonly: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :net_amount, "Montant Net" %>
+        <%= form.number_field :net_amount, class: "form-control", lang: "fr", step: "0.01", value: (lease.net_amount.present? ? lease.net_amount : 0.0), readonly: true %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    
+
+    
+
+  
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :guarantee_amount, "Montant caution" %>
+        <%= form.number_field :guarantee_amount, class: "form-control", lang: "fr", step: "0.01", value: (lease.guarantee_amount.present? ? lease.guarantee_amount : 0.0) %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :avance, "Montant avance" %>
+        <%= form.number_field :avance, class: "form-control", lang: "fr", step: "0.01", value: (lease.avance.present? ? lease.avance : 0.0) %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
       <div class="form-group">
         <%= form.check_box :vat_paid_by_tenant %>
-        <%= form.label :vat_paid_by_tenant, "TVA payée le locataire?" %>
+        <%= form.label :vat_paid_by_tenant, "TVA payée par le locataire?" %>
         
       </div>
 
@@ -145,29 +166,11 @@
         
       </div>
     </div>
-
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= form.label :net_amount, "Montant Net" %>
-        <%= form.number_field :net_amount, class: "form-control" %>
-      </div>
-    </div>
-
-  
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= form.label :guarantee_amount, "Montant caution" %>
-        <%= form.number_field :guarantee_amount, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= form.label :avance, "Montant avance" %>
-        <%= form.number_field :avance, class: "form-control" %>
-      </div>
-    </div>
+    
   </div>
+
+
+   
 
   <div class="row">
     <div class="col-md-12">
@@ -177,6 +180,9 @@
         <%= form.text_area :notes, class: "form-control" %>
       </div>
     </div>
+  </div>
+
+ 
 
   </div><!-- modal body -->
      <div class="modal-footer">

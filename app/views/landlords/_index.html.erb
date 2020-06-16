@@ -1,6 +1,7 @@
 <% @landlords.each do |landlord| %>
   <tr>
     <td><%= landlord_type(landlord.landlord_type_id).name %></td>
+    <td><%= landlord.company_name %></td>
     <td><%= landlord.civility %></td>
     <td><%= landlord.last_name %></td>
     <td><%= landlord.first_name %></td>

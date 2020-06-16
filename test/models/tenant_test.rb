@@ -11,7 +11,7 @@
 #  birth_place    :string
 #  id_type        :string
 #  id_number      :string
-#  id_expiration  :string
+#  id_expiration  :datetime
 #  profession     :string
 #  nationality    :string
 #  company_name   :string

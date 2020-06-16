@@ -41,7 +41,13 @@
 //= require lib/datatables.net-responsive-dt/js/responsive.dataTables.min
 //= require lib/peity/jquery.peity.min
 //= require lib/jquery.flot/jquery.flot
+//= require lib/select2/js/select2.full.min
 //= require cocoon
+//= require incomes
+//= require custom
+//= require leases
+//= require mandates
+
 
 $(document).on('turbolinks:load', function() {
       $('#datatable1').DataTable({
@@ -76,3 +82,51 @@ $(document).on('turbolinks:load', function() {
   });
 
   
+  $(document).on('turbolinks:load', function() {
+    $('body').on('shown.bs.modal', '.modal', function() {
+        $(this).find('select').each(function() {
+          var dropdownParent = $(document.body);
+          if ($(this).parents('.modal.in:first').length !== 0)
+            dropdownParent = $(this).parents('.modal.in:first');
+          $(this).select2({
+            dropdownParent: $('.modal'),
+            width: 'resolve' ,
+            
+
+          });
+        });
+      });
+  });
+
+  $(document).on('turbolinks:load', function() {  
+
+    $(this).find('select').each(function() {
+      var dropdownParent = $(document.body);
+
+        $(this).select2({
+          dropdownParent: dropdownParent,
+          width: 'resolve' ,
+        });
+    });
+
+  });
+
+
+  // Ajax call.
+
+  function ajaxPostData(source, route, verb){
+    console.log("Source: ", source);
+    $(source).on("change", function() {
+        $.ajax({
+            type: verb,
+            headers: {
+                'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+                },
+            dataType: 'script',
+            url: route,
+            cache: 'false',
+            data: { data: $(source + ' option:selected').val()}
+        });
+    });
+  };
+
