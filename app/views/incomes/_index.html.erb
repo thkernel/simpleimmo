@@ -1,7 +1,9 @@
 <% @incomes.each do |income| %>
       <tr>
-        <td><%= income.property_id %></td>
-        <td><%= income.type %></td>
+        <td><%= income.id %></td>
+        <td><%= income.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= property(income.property_id).reference %></td>
+        <td><%= income.income_type %></td>
         <td><%= income.payer %></td>
         <td>
             <div class="action-buttons">

@@ -47,6 +47,7 @@
 //= require custom
 //= require leases
 //= require mandates
+//= require expenses
 
 
 $(document).on('turbolinks:load', function() {

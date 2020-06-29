@@ -3,7 +3,7 @@
 # Table name: properties
 #
 #  id                 :bigint           not null, primary key
-#  building           :integer
+#  building_id        :integer
 #  landlord_id        :bigint
 #  property_type_id   :bigint
 #  reference          :string
@@ -35,6 +35,8 @@ class Property < ApplicationRecord
   belongs_to :city
   belongs_to :user
 
+  has_many :handovers, dependent: :destroy
+
   has_one :lease, dependent: :destroy
 
 
@@ -45,8 +47,20 @@ class Property < ApplicationRecord
 	#validates :reference, presence: true, uniqueness: {scope: :building_id}, if: :buildind_id?
 
 	scope :available, -> {where(status: "available")}
+	scope :unavailable, -> {where(status: "unavailable")}
 
 
+
+
+	def full_reference
+		
+		if building_id.present?
+			"#{reference} | #{Building.find(building_id).reference}"
+		else
+			"#{reference}"
+		end
+	end
+	
 	private
 
 	def set_status
@@ -54,5 +68,7 @@ class Property < ApplicationRecord
 			self.status = "available"
 		end
 	end
+
+
 
 end

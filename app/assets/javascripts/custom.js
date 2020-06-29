@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function(){
 
     // Filter doctor by service.
     $('#lease-modal').on('shown.bs.modal', function() {
-        ajaxPostData("#lease_building_id", "/leases/get_properties", "GET");
+        ajaxPostData("#lease_building_id", "/leases/get_available_properties", "GET");
         ajaxPostData("#lease_property_id", "/leases/get_property_rent", "GET");
     });
 

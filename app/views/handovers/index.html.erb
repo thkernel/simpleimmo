@@ -1,59 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h3>Etats des lieux</h3></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody">
+  <div class="br-section-wrapper">
+<div class="headers mg-b-20">
+    <div class="left-content">
+    </div>
 
-<h1>Handovers</h1>
+    <div class="text-right">
+        <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_handover_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
-<table>
+    </div>
+
+</div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
+  
+
   <thead>
     <tr>
       <th>Type</th>
       <th>Reference</th>
       <th>Lease</th>
-      <th>Doors</th>
-      <th>Windows</th>
-      <th>Wall cover</th>
-      <th>Flooring</th>
-      <th>Ventilators</th>
-      <th>Air conditioners</th>
-      <th>Light bulbs</th>
-      <th>Faucets</th>
-      <th>Showers</th>
-      <th>Doorbell</th>
-      <th>Ceiling</th>
-      <th>Electricity</th>
-      <th>Notes</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @handovers.each do |handover| %>
-      <tr>
-        <td><%= handover.type %></td>
-        <td><%= handover.reference %></td>
-        <td><%= handover.lease %></td>
-        <td><%= handover.doors %></td>
-        <td><%= handover.windows %></td>
-        <td><%= handover.wall_cover %></td>
-        <td><%= handover.flooring %></td>
-        <td><%= handover.ventilators %></td>
-        <td><%= handover.air_conditioners %></td>
-        <td><%= handover.light_bulbs %></td>
-        <td><%= handover.faucets %></td>
-        <td><%= handover.showers %></td>
-        <td><%= handover.doorbell %></td>
-        <td><%= handover.ceiling %></td>
-        <td><%= handover.electricity %></td>
-        <td><%= handover.notes %></td>
-        <td><%= handover.user %></td>
-        <td><%= link_to 'Show', handover %></td>
-        <td><%= link_to 'Edit', edit_handover_path(handover) %></td>
-        <td><%= link_to 'Destroy', handover, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody class="handovers">
+    <%= render "index"%>
   </tbody>
 </table>
+</div>
+</div>
+<div id="handover-modal" class="c-modal modal fade" data-backdrop="static"></div>
 
-<br>
-
-<%= link_to 'New Handover', new_handover_path %>

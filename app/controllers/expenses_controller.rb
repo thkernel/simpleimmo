@@ -16,7 +16,7 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/new
   def new
-    @properties = Property.all
+    @properties = Property.unavailable
     @taxes = Tax.all
     @leases = Lease.all
     @expense = Expense.new
@@ -24,7 +24,7 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/1/edit
   def edit
-    @properties = Property.all
+    @properties = Property.unavailable
     @taxes = Tax.all
     @leases = Lease.all
   end
@@ -89,6 +89,6 @@ def delete
 
     # Only allow a list of trusted parameters through.
     def expense_params
-      params.require(:expense).permit(:property_id, :lease_id, :type, :payer, :start_date, :end_date, :payment_method_id, :amount, :received_amount, :tax_id, :total_amount, :description)
+      params.require(:expense).permit(:property_id,  :expense_type, :beneficiary,  :payment_method, :amount, :received_amount, :tax_id, :total_amount, :description)
     end
 end

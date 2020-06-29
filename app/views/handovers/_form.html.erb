@@ -1,102 +1,153 @@
-<%= form_with(model: handover, local: true) do |form| %>
-  <% if handover.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(handover.errors.count, "error") %> prohibited this handover from being saved:</h2>
+<%= form_with(model: handover, local: false) do |form| %>
+  
+<div class="modal-body">
+  
+        <ul class="errors">
+        </ul>
+ 
+   <div class="row">
+    
 
-      <ul>
-      <% handover.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :handover_type, "Type", class: "required" %>
+         <%= form.select :handover_type, HANDOVER_TYPES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :type %>
-    <%= form.text_field :type %>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :property_id, "Propriéte", class: "required" %>
+        <%= form.collection_select(:property_id, @properties, :id, :reference, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;",  required: true) %> 
+      </div>
+    </div>
+
+
   </div>
 
-  <div class="field">
-    <%= form.label :reference %>
-    <%= form.text_field :reference %>
+  <div class="row">
+    <div class="col-md">
+      <div class="form-group">
+        <%= form.label :reference, "Référence" %>
+        <%= form.text_field :reference, class: "form-control", placeholder: "Référence" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :lease_id %>
-    <%= form.text_field :lease_id %>
+  <div class="row">
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :doors, "Portes" %>
+        <%= form.select :doors, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :windows, "Fenêtres" %>
+        <%= form.select :windows, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :wall_cover , "Revêtement mural"%>
+        <%= form.select :wall_cover, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :flooring, "Revêtement de sol" %>
+        <%= form.select :flooring, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :doors %>
-    <%= form.text_field :doors %>
+  
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :ventilators, "Ventilateurs" %>
+        <%= form.select :ventilators, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :air_conditioners, "Climatisation" %>
+        <%= form.select :air_conditioners, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :light_bulbs, "Ampoules" %>
+        <%= form.select :light_bulbs, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :faucets , "Robinets"%>
+        <%= form.select :faucets, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
   </div>
 
-  <div class="field">
-    <%= form.label :windows %>
-    <%= form.text_field :windows %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :showers, "Docuhes" %>
+        <%= form.select :showers, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :doorbell, "Sonnette" %>
+        <%= form.select :doorbell, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :ceiling, "Plafond" %>
+        <%= form.select :ceiling, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :electricity, "Electricité" %>
+        <%= form.select :electricity, HANDOVER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :wall_cover %>
-    <%= form.text_field :wall_cover %>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="form-group">
+        <%= form.label :notes, "Notes" %>
+        <%= form.text_area :notes, class: "form-control", placeholder: "Notes" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :flooring %>
-    <%= form.text_field :flooring %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ventilators %>
-    <%= form.text_field :ventilators %>
-  </div>
-
-  <div class="field">
-    <%= form.label :air_conditioners %>
-    <%= form.text_field :air_conditioners %>
-  </div>
-
-  <div class="field">
-    <%= form.label :light_bulbs %>
-    <%= form.text_field :light_bulbs %>
-  </div>
-
-  <div class="field">
-    <%= form.label :faucets %>
-    <%= form.text_field :faucets %>
-  </div>
-
-  <div class="field">
-    <%= form.label :showers %>
-    <%= form.text_field :showers %>
-  </div>
-
-  <div class="field">
-    <%= form.label :doorbell %>
-    <%= form.text_field :doorbell %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ceiling %>
-    <%= form.text_field :ceiling %>
-  </div>
-
-  <div class="field">
-    <%= form.label :electricity %>
-    <%= form.text_field :electricity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  
+</div><!-- modal body -->
+     <div class="modal-footer">
+            <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+            <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+    </div>
 <% end %>

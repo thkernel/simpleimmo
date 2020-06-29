@@ -93,15 +93,15 @@
 
     <div class="col-md-4">
       <div class="form-group">
-        <%= form.label :vat_rate, "Taux taxe foncière (%)", class: "required" %>
-        <%= form.collection_select(:vat_rate, @taxes, :rate, :name, {prompt: "Sélectionner"}, class: "form-control") %>
+        <%= form.label :property_tax_rate, "Taux taxe foncière (%)", class: "required" %>
+        <%= form.collection_select(:property_tax_rate, @taxes, :rate, :name, {prompt: "Sélectionner"}, class: "form-control") %>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="form-group">
-        <%= form.label :net_amount, "Montant taxe foncière", class: "required" %>
-        <%= form.number_field :net_amount, class: "form-control", lang: "fr", step: "0.01", value: (mandate.net_amount.present? ? mandate.net_amount : 0.0), min: "1", required: true, readonly: true %>
+        <%= form.label :property_tax_amount, "Montant taxe foncière", class: "required" %>
+        <%= form.number_field :property_tax_amount, class: "form-control", lang: "fr", step: "0.01", value: (mandate.property_tax_amount.present? ? mandate.property_tax_amount : 0.0), min: "1", required: true, readonly: true %>
       </div>
     </div>
   </div>

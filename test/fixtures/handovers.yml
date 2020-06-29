@@ -3,8 +3,9 @@
 # Table name: handovers
 #
 #  id               :bigint           not null, primary key
-#  type             :string
+#  handover_type    :string
 #  reference        :string
+#  property_id      :bigint
 #  lease_id         :bigint
 #  doors            :string
 #  windows          :string

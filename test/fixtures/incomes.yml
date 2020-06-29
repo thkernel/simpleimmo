@@ -5,7 +5,7 @@
 #  id              :bigint           not null, primary key
 #  property_id     :bigint
 #  lease_id        :bigint
-#  type            :string
+#  income_type     :string
 #  payer           :string
 #  start_date      :datetime
 #  end_date        :datetime

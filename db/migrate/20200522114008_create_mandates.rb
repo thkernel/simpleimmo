@@ -14,7 +14,8 @@ class CreateMandates < ActiveRecord::Migration[5.2]
       t.float :property_value
       t.float :commission_rate
       t.float :commission_amount
-      t.float :vat_rate
+      t.float :property_tax_rate
+      t.float :property_tax_amount
       t.float :net_amount
       t.string :status
       t.text :notes

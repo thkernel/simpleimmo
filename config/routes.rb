@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
 
   
+  resources :currencies
   resources :expenses do 
     get "delete"
   end
   resources :incomes do 
     get "delete"
+
+    collection do  
+        get "get_property_rent" => "incomes#get_property_rent"
+
+    end
+
   end
+  
   resources :payments do 
     get "delete"
   end

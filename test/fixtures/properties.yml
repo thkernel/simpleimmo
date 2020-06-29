@@ -3,7 +3,7 @@
 # Table name: properties
 #
 #  id                 :bigint           not null, primary key
-#  building           :integer
+#  building_id        :integer
 #  landlord_id        :bigint
 #  property_type_id   :bigint
 #  reference          :string

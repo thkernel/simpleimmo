@@ -5,7 +5,7 @@
 #  id              :bigint           not null, primary key
 #  property_id     :bigint
 #  lease_id        :bigint
-#  type            :string
+#  income_type     :string
 #  payer           :string
 #  start_date      :datetime
 #  end_date        :datetime
@@ -25,6 +25,26 @@
 #
 
 class Income < ApplicationRecord
-  belongs_to :property
+  belongs_to :lease
   belongs_to :user
+
+
+  validates :start_date, presence: true, if: :rent_payment?
+  validates :end_date, presence: true, if: :rent_payment?
+
+  validates_with RentDatesValidator
+
+
+  private
+
+  def rent_payment?
+  	if self.income_type == "Loyer"
+  		true
+  	else
+  		false
+  	end
+  end
+
+
+
 end

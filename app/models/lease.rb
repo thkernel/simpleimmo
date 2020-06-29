@@ -32,8 +32,21 @@
 #
 
 class Lease < ApplicationRecord
+  
+  before_save :set_status
+
   belongs_to :tenant
   belongs_to :user
-
   belongs_to :property
+
+  validates_with PropertyValidator
+
+
+  private
+
+	def set_status
+		unless self.status.present?
+			self.status = "enable"
+		end
+	end
 end

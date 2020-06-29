@@ -3,8 +3,9 @@
 # Table name: handovers
 #
 #  id               :bigint           not null, primary key
-#  type             :string
+#  handover_type    :string
 #  reference        :string
+#  property_id      :bigint
 #  lease_id         :bigint
 #  doors            :string
 #  windows          :string
@@ -27,4 +28,11 @@
 class Handover < ApplicationRecord
   belongs_to :lease
   belongs_to :user
+
+
+  validates :lease_id, presence: true
+  validates :handover_type, presence: true
+  validates_with LeasePropertyValidator
+  
+
 end

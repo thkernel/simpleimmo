@@ -1,7 +1,7 @@
 <% @leases.each do |lease| %>
       <tr>
         <td><%= tenant(lease.tenant_id).full_name %></td>
-        <td><%= property(lease.property_id).reference %></td>
+        <td><%= property(lease.property_id).full_reference %></td>
         <td><%= lease.usage_type %></td>
         <td>
             <div class="action-buttons">

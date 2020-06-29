@@ -18,9 +18,7 @@ class LeasesController < ApplicationController
   def show
   end
 
-  def get_property_rent
-    @property = Property.find(params[:data])
-  end
+  
   
   # GET /leases/new
   def new
@@ -36,8 +34,8 @@ class LeasesController < ApplicationController
   def edit
     @tenants = Tenant.all
     @buildings = Building.all
-    #@properties = Property.all
-    @properties = Property.available
+    @properties = Property.all
+    #@properties = Property.available
     @taxes = Tax.all
   end
 
@@ -81,14 +79,18 @@ class LeasesController < ApplicationController
   end
 
 
-    def delete
-      @lease = Lease.find(params[:lease_id])
-    end
+  def delete
+    @lease = Lease.find(params[:lease_id])
+  end
 
   # DELETE /leases/1
   # DELETE /leases/1.json
   def destroy
     @lease.destroy
+    property = Property.find_by(property_id: @lease.property_id)
+
+    property.update_column(:status, "available") if property.present?
+
     respond_to do |format|
       format.html { redirect_to leases_url, notice: 'Lease was successfully destroyed.' }
       format.json { head :no_content }

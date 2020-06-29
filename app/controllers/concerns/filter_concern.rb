@@ -30,10 +30,10 @@ module FilterConcern
 
         
             puts "PROPERTIES : #{properties.inspect}"
-            @properties = properties.map{|a| [a.reference, a.id ]}.insert(0, "Sélectionner")
+            @properties = properties.map{|a| [a.full_reference, a.id ]}.insert(0, "Sélectionner")
         else
             properties = Property.all
-            @properties = properties.map{|a| [a.reference, a.id ]}.insert(0, "Sélectionner")
+            @properties = properties.map{|a| [a.full_reference, a.id ]}.insert(0, "Sélectionner")
         end
     end
 
@@ -48,11 +48,16 @@ module FilterConcern
 
         
             puts "PROPERTIES : #{properties.inspect}"
-            @properties = properties.map{|a| [a.reference, a.id ]}.insert(0, "Sélectionner")
+            @properties = properties.map{|a| [a.full_reference, a.id ]}.insert(0, "Sélectionner")
         else
             properties = Property.available
-            @properties = properties.map{|a| [a.reference, a.id ]}.insert(0, "Sélectionner")
+            @properties = properties.map{|a| [a.full_reference, a.id ]}.insert(0, "Sélectionner")
         end
+    end
+
+
+    def get_property_rent
+        @property = Property.find(params[:data])
     end
 
 end

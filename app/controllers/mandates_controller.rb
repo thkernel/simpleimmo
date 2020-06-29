@@ -94,6 +94,6 @@ class MandatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def mandate_params
-      params.require(:mandate).permit( :building_id, :property_id, :usage_type, :start_date, :end_date, :duration, :id_type, :id_number, :periodicity, :property_value, :commission_rate, :commission_amount, :vat_rate, :net_amount,  :notes)
+      params.require(:mandate).permit( :building_id, :property_id, :usage_type, :start_date, :end_date, :duration, :id_type, :id_number, :periodicity, :property_value, :commission_rate, :commission_amount, :property_tax_rate, :property_tax_amount, :net_amount,  :notes)
     end
 end

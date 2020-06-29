@@ -88,7 +88,50 @@ unless Profile.all.present?
 end
 
 
-=begin
+
+unless City.all.present?
+    cities = City.create([
+        {
+            name: "Bamako", 
+            user_id: users.first.id
+        },
+        {
+            name: "Kayes", 
+            user_id: users.first.id
+        },
+        {
+            name: "Koulikoro", 
+            user_id: users.first.id
+        },
+        {
+            name: "Sikasso", 
+            user_id: users.first.id
+        },
+        {
+            name: "Ségou", 
+            user_id: users.first.id
+        },
+        {
+            name: "Mopti", 
+            user_id: users.first.id
+        },
+        {
+            name: "Tombouctou", 
+            user_id: users.first.id
+        },
+        {
+            name: "Gao", 
+            user_id: users.first.id
+        },
+        {
+            name: "Kidal", 
+            user_id: users.first.id
+        }
+    
+    ])
+
+end
+
 unless Currency.all.present?
     currencies = Currency.create([
         {
@@ -100,7 +143,29 @@ unless Currency.all.present?
     ])
 
 end
-=end
+
+unless Tax.all.present?
+    taxes = Tax.create([
+        {
+            name: "Taxe foncière 10%", 
+            rate: 10,
+            user_id: users.first.id
+        },
+        {
+            name: "Taxe sur loyer 18%", 
+            rate: 18,
+            user_id: users.first.id
+        },
+        {
+            name: "TVA 18%", 
+            rate: 18,
+            user_id: users.first.id
+        }
+    
+    ])
+
+end
+
 
 
 # Property type

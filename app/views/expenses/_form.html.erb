@@ -4,53 +4,62 @@
         <ul class="errors">
         </ul>
 
-  <div class="form-group">
-    <%= form.label :property_id, "Propriéte", class: "required" %>
-    <%= form.collection_select(:property_id, @properties, :id, :reference, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
-  </div>
 
   <div class="row">
+    
+
     <div class="col-md-6">
       <div class="form-group">
-        <%= form.label :lease_id, "Location", class: "required" %>
-         <%= form.collection_select(:lease_id, @leases, :id, :id, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+        <%= form.label :expense_type, "Type", class: "required" %>
+         <%= form.select :expense_type, EXPENSE_TYPE, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="form-group">
-        <%= form.label :type, "Type", class: "required" %>
-         <%= form.select :type, EXPENSE_TYPE, {prompt: "Sélectionner"}, class: "form-control" %>
+        <%= form.label :property_id, "Propriéte", class: "required" %>
+        <%= form.collection_select(:property_id, @properties, :id, :full_reference, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;",  required: true) %> 
       </div>
     </div>
+
+
   </div>
 
   
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="form-group">
         <%= form.label :payment_method, "Méthode de paiement", class: "required" %>
-        <%= form.select :payment_method, PAYMENT_METHODS, {prompt: "Sélectionner"}, class: "form-control" %>
+        <%= form.select :payment_method, PAYMENT_METHODS, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;" %>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
 
       <div class="form-group">
         <%= form.label :amount, "Montant dû", class: "required" %>
-        <%= form.number_field :amount, class: "form-control", required: true %>
+        <%= form.number_field :amount, class: "form-control", lang: "fr", step: "0.01", value: (expense.amount.present? ? expense.amount : 0.0), min: "1", required: true %>
       </div>
     </div>
 
     
 
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="form-group">
-        <%= form.label :tax_id , "TVA" %>
-        <%= form.collection_select(:tax_id, @taxes, :id, :name, {prompt: "Sélectionner"}, class: "form-control") %> 
+        <%= form.label :tax_id , "TVA (%)" %>
+        <%= form.collection_select(:tax_id, @taxes, :rate, :name, {prompt: "Sélectionner"}, class: "form-control") %> 
       </div>
     </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= form.label :total_amount, "Montant Net", class: "required" %>
+        <%= form.number_field :total_amount, class: "form-control", lang: "fr", step: "0.01", value: (expense.total_amount.present? ? expense.total_amount : 0.0), min: "1", required: true, readonly: true %>
+      </div>
+    </div>
+
   </div>
 
   <div class="row">

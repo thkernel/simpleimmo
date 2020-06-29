@@ -1,7 +1,9 @@
 <% @expenses.each do |expense| %>
       <tr>
-        <td><%= expense.property %></td>
-        <td><%= expense.type %></td>
+        <td><%= expense.id %></td>
+        <td><%= expense.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= property(expense.property_id).reference %></td>
+        <td><%= expense.expense_type %></td>
         <td><%= expense.beneficiary %></td>
         <td>
             <div class="action-buttons">

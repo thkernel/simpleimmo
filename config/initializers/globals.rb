@@ -8,3 +8,5 @@ PAYMENT_DATE = Array.new(31) { |i| [i+1] }
 RECEIPT_DATE = Array.new(31) { |i| [i+1] }
 INCOME_TYPE = [["Loyer"], ["Dépôt de garantie"]]
 EXPENSE_TYPE = [["Taxes et impôts"], ["Travaux"], ["Rembourssement du dépôt de garantie"], ["Autres dépense"]]
+HANDOVER_TYPES = [["Entrée"], ["Sortie"]]
+HANDOVER_STATUSES= [["Neuf"], ["Bon état"], ["Etat moyen"], ["Usage normal"], ["Dégradé"], ["Hors service"], ["Sale"], ["Autres"]]

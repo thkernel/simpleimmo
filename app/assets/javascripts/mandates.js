@@ -18,7 +18,7 @@ $(document).on('turbolinks:load', function(){
 	    console.log("Value: ", target_value);
 	     console.log("ID :", target_id);
 	    //console.log(target_id)
-	    if (target_value != null && target_id == "mandate_vat_rate"){
+	    if (target_value != null && target_id == "mandate_property_tax_rate"){
 	     //ajaxFilterPost('#'+target_id, "/sales/get_medicament_price", "GET");
 
 
@@ -28,9 +28,9 @@ $(document).on('turbolinks:load', function(){
 		    vat_amount = parseFloat((property_value * target_value) / 100);
 
 		    console.log("VAT AMOUNT: ", vat_amount);
-		    net_amount = parseFloat(vat_amount);
-		    console.log("NET AMOUNT: ", net_amount);
-		    $("#mandate_net_amount").val(net_amount);
+		    property_tax_amount = parseFloat(vat_amount);
+		    console.log("NET AMOUNT: ", property_tax_amount);
+		    $("#mandate_property_tax_amount").val(property_tax_amount);
 
 	    }
 	});

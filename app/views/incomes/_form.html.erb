@@ -4,27 +4,27 @@
         <ul class="errors">
         </ul>
 
-  <div class="form-group">
-    <%= form.label :property_id, "Propriéte", class: "required" %>
-    <%= form.collection_select(:property_id, @properties, :id, :reference, {prompt: "Sélectionner"}, class: "form-control", required: true, style: "width: 100%") %> 
-  </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :lease_id, "Location", class: "required" %>
-         <%= form.collection_select(:lease_id, @leases, :id, :id, {prompt: "Sélectionner"}, class: "form-control", required: true, style: "width: 100%") %> 
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :income_type, "Type", class: "required" %>
+             <%= form.select :income_type, INCOME_TYPE, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :property_id, "Propriéte", class: "required" %>
+            <%= form.collection_select(:property_id, @properties, :id, :full_reference, {prompt: "Sélectionner"}, class: "form-control", required: true, style: "width: 100%") %> 
+          </div>
+        </div>
+
       </div>
-    </div>
+    
 
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :type, "Type", class: "required" %>
-         <%= form.select :type, INCOME_TYPE, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%" %>
-      </div>
-    </div>
-  </div>
-
+  
   
 
   <div class="row ">
@@ -58,23 +58,28 @@
 
       <div class="form-group">
         <%= form.label :amount, "Montant dû", class: "required" %>
-        <%= form.number_field :amount, class: "form-control", required: true %>
+        <%= form.number_field :amount, class: "form-control", lang: "fr", step: "0.01", value: (income.amount.present? ? income.amount : 0.0), min: "1", required: true %>
       </div>
     </div>
 
     <div class="col-md-3">
 
       <div class="form-group">
-        <%= form.label :received_amount, "Montant reçus" %>
-        <%= form.number_field :received_amount, class: "form-control" %>
+        <%= form.label :tax_id , "TVA (%)" %>
+        <%= form.collection_select(:tax_id, @taxes, :rate, :name, {prompt: "Sélectionner"}, class: "form-control") %> 
       </div>
+
     </div>
 
     <div class="col-md-3">
+
       <div class="form-group">
-        <%= form.label :tax_id , "TVA" %>
-        <%= form.collection_select(:tax_id, @taxes, :id, :name, {prompt: "Sélectionner"}, class: "form-control") %> 
+        <%= form.label :total_amount, "Montant Net" %>
+        <%= form.number_field :total_amount, class: "form-control" , lang: "fr", step: "0.01", value: (income.total_amount.present? ? income.total_amount : 0.0), min: "1", required: true, readonly: true %>
       </div>
+
+
+      
     </div>
   </div>
 

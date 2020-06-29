@@ -26,7 +26,7 @@
     <div class="col-md-8">
       <div class="form-group">
         <%= form.label :property_id, "Propriété", class: "required" %>
-        <%= form.collection_select(:property_id, @properties, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
+        <%= form.collection_select(:property_id, @properties, :id, :full_reference, {prompt: "Sélectionner"}, class: "form-control") %> 
       </div>
     </div>
 

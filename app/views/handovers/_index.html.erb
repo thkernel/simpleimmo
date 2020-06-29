@@ -1,0 +1,14 @@
+<% @handovers.each do |handover| %>
+      <tr>
+        <td><%= handover.id %></td>
+        <td><%= handover.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= property(handover.property_id).reference %></td>
+        <td><%= handover.handover_type %></td>
+        <td><%= handover.reference %></td>
+       
+        
+        <td><%= link_to 'Show', handover %></td>
+        <td><%= link_to 'Edit', edit_handover_path(handover) %></td>
+        <td><%= link_to 'Destroy', handover, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>

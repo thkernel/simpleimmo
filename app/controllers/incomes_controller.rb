@@ -1,4 +1,7 @@
 class IncomesController < ApplicationController
+
+  include FilterConcern
+  
   before_action :authenticate_user!
   before_action :set_income, only: [:show, :edit, :update, :destroy]
   layout "dashboard"
@@ -15,7 +18,7 @@ class IncomesController < ApplicationController
 
   # GET /incomes/new
   def new
-    @properties = Property.all
+    @properties = Property.unavailable
     @taxes = Tax.all
     @leases = Lease.all
     @income = Income.new
@@ -32,6 +35,29 @@ class IncomesController < ApplicationController
   # POST /incomes.json
   def create
     @income = current_user.incomes.build(income_params)
+
+    #Rent payment.
+
+    if @income.start_date.present? && @income.end_date.present?
+
+      start_month = @income.start_date.month
+      puts "START MONTH: #{start_month}"
+
+      start_year = @income.start_date.year
+      puts "START YEAR: #{start_year}"
+
+      end_month = @income.end_date.month
+      puts "END MONTH: #{end_month}"
+
+      end_year = @income.end_date.year
+      puts "END YEAR: #{end_year}"
+
+      (start_year .. end_year).each do |current|
+        
+      end
+
+    end
+
 
     respond_to do |format|
       if @income.save
@@ -86,6 +112,6 @@ class IncomesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def income_params
-      params.require(:income).permit(:property_id, :lease_id, :type, :payer, :start_date, :end_date, :payment_method, :amount, :received_amount, :tax_id, :total_amount, :receipt_number, :description)
+      params.require(:income).permit(:property_id, :lease_id, :income_type, :payer, :start_date, :end_date, :payment_method, :amount, :received_amount, :tax_id, :total_amount, :receipt_number, :description)
     end
 end

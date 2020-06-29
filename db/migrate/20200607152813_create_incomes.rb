@@ -1,9 +1,9 @@
 class CreateIncomes < ActiveRecord::Migration[5.2]
   def change
     create_table :incomes do |t|
-      t.references :property, foreign_key: true
+      t.integer :property_id
       t.references :lease, foreign_key: true
-      t.string :type
+      t.string :income_type
       t.string :payer
       t.datetime :start_date
       t.datetime :end_date
