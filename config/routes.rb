@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   
+  resources :permission_items
+  resources :features
   resources :currencies
   resources :expenses do 
     get "delete"
