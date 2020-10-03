@@ -1,6 +1,6 @@
 <% @incomes.each do |income| %>
       <tr>
-        <td><%= income.id %></td>
+       
         <td><%= income.created_at.strftime("%d/%m/%Y") %></td>
         <td><%= property(income.property_id).reference %></td>
         <td><%= income.income_type %></td>

@@ -3,7 +3,7 @@
 # Table name: properties
 #
 #  id                 :bigint           not null, primary key
-#  building_id        :integer
+#  building_id        :bigint
 #  landlord_id        :bigint
 #  property_type_id   :bigint
 #  reference          :string
@@ -27,17 +27,24 @@
 #
 
 class Property < ApplicationRecord
+	include SharedUtils::Generate
 
+	before_save :generate_random_number_uid
+	
   before_save :set_status
 
   belongs_to :landlord
   belongs_to :property_type
   belongs_to :city
   belongs_to :user
+  belongs_to :building, optional: true
+  belongs_to :income
+
 
   has_many :handovers, dependent: :destroy
 
   has_one :lease, dependent: :destroy
+  has_one :mandate, dependent: :destroy
 
 
   # Validations

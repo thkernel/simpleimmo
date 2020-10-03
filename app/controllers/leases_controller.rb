@@ -24,7 +24,7 @@ class LeasesController < ApplicationController
   def new
     @tenants = Tenant.all
     @buildings = Building.all
-    #@properties = Property.all
+    @property_types = PropertyType.all
     @properties = Property.available
     @taxes = Tax.all
     @lease = Lease.new
@@ -36,6 +36,7 @@ class LeasesController < ApplicationController
     @buildings = Building.all
     @properties = Property.all
     #@properties = Property.available
+    @property_types = PropertyType.all
     @taxes = Tax.all
   end
 
@@ -105,6 +106,6 @@ class LeasesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lease_params
-      params.require(:lease).permit(:tenant_id, :building_id, :property_id, :usage_type, :start_date, :end_date, :effective_date, :duration, :id_type, :id_number, :periodicity, :payment_method, :payment_date, :receipt_date, :rent_excluding_tax, :vat_rate, :net_amount, :vat_paid_by_tenant, :guarantee_amount, :avance, :renewable, :notes)
+      params.require(:lease).permit( :tenant_id, :building_id, :property_id, :usage_type, :start_date, :end_date, :effective_date, :duration, :id_type, :id_number, :periodicity, :payment_method, :payment_date, :receipt_date, :rent_excluding_tax, :vat_rate, :net_amount, :vat_paid_by_tenant, :guarantee_amount, :avance, :renewable, :notes)
     end
 end

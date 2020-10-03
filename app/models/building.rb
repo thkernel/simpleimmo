@@ -19,6 +19,10 @@
 #
 
 class Building < ApplicationRecord
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+  
   belongs_to :landlord
   belongs_to :city
   belongs_to :user

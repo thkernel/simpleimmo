@@ -1,16 +1,14 @@
 module SidebarMenusHelper
 
     def sidebar_menu 
-        if current_user.role.name == "superuser"
+        if current_user.superuser?
             render "layouts/partials/dashboard/navs/superuser-nav"
-        elsif current_user.role.name == "Prestataire"
-            render "layouts/partials/dashboard/navs/prestataire-nav"
-        elsif current_user.role.name == "Patient"
-            render "layouts/partials/dashboard/navs/patient-nav"
+        elsif current_user.admin?
+            render "layouts/partials/dashboard/navs/admin-nav"
+        elsif current_user.user?
+            render "layouts/partials/dashboard/navs/user-nav"
        
 
-        else
-            render "layouts/partials/dashboard/navs/superuser-nav"
 
 
         end

@@ -7,6 +7,7 @@
 #  login                  :string
 #  role_id                :bigint
 #  service_id             :bigint
+#  status                 :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -29,6 +30,10 @@
 #
 
 class User < ApplicationRecord
+	include SharedUtils::Generate
+
+	before_save :generate_random_number_uid
+	
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -62,9 +67,23 @@ class User < ApplicationRecord
 	
 	# Validations
 
-	validates :login, presence: true, uniqueness: true
+	#validates :login, presence: true, uniqueness: true
 
-
+	def superuser?
+		if self.role.name == "superuser"
+		  true 
+		else
+		  false
+		end
+	  end
+  
+	  def admin?
+		if self.role.name == "administrateur"
+		  true 
+		else
+		  false
+		end
+	  end
 
 	private 
 

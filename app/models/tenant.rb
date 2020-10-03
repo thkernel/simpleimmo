@@ -28,6 +28,10 @@
 #
 
 class Tenant < ApplicationRecord
+	include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+  
   belongs_to :tenant_type
   belongs_to :user
 

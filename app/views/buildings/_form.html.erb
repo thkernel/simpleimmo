@@ -6,6 +6,7 @@
 
 
     <div class="row">
+    
       <div class="col-md-12">
         <div class="form-group">
           <%= form.label :landlord_id, "Propriétaire", class: "required" %>
@@ -24,23 +25,9 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <%= form.label :apartment_number, "Nombre appartement", class: "required" %>
-          <%= form.number_field :apartment_number, class: "form-control", lang: "fr", step: "1", value: (building.apartment_number.present? ? building.apartment_number : 0), min: "1",  required: true %>
-        </div>
-      </div>
-    </div>
+  
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <%= form.label :address, "Adresse", class: "required" %>
-          <%= form.text_field :address, class: "form-control", placeholder: "Adresse", required: true %>
-        </div>
-      </div>
-    </div>
+
 
     <div class="row">
       <div class="col-md-6">
@@ -59,6 +46,15 @@
       </div>
     </div>
 
+     <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= form.label :address, "Adresse", class: "required" %>
+          <%= form.text_field :address, class: "form-control", placeholder: "Adresse", required: true %>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-6">
 
@@ -68,12 +64,19 @@
         </div>
       </div>
 
+      <div class="form-group col-md-6">
+        <%= form.label :apartment_number, "Nombre appartement", class: "required" %>
+        <%= form.number_field :apartment_number, class: "form-control", lang: "fr", step: "1", value: (building.apartment_number.present? ? building.apartment_number : 0), min: "1",  required: true %>
+      </div>
+     
+<!--
       <div class="col-md-6">
         <div class="form-group">
           <%= form.label :value, "Valeur" %>
           <%= form.number_field :value, class: "form-control",  lang: "fr", step: "O.01", value: (building.value.present? ? building.value : 0.0) %>
         </div>
       </div>
+-->
     </div>
 
     <div class="row">

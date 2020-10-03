@@ -1,7 +1,8 @@
 class CreateExpenses < ActiveRecord::Migration[5.2]
   def change
     create_table :expenses do |t|
-      t.integer :property_id
+      t.string :uid
+      t.references :property, foreign_key: true
       t.references :lease, foreign_key: true
       t.string :expense_type
       t.string :beneficiary

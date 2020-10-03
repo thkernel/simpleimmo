@@ -20,6 +20,7 @@ class MandatesController < ApplicationController
 
   # GET /mandates/new
   def new
+    @property_types = PropertyType.all 
     @landlords = Landlord.all 
     @buildings = Building.all 
     @properties = Property.all
@@ -29,6 +30,7 @@ class MandatesController < ApplicationController
 
   # GET /mandates/1/edit
   def edit
+    @property_types = PropertyType.all 
     @landlords = Landlord.all 
     @buildings = Building.all 
     @properties = Property.all
@@ -39,6 +41,12 @@ class MandatesController < ApplicationController
   # POST /mandates.json
   def create
     @mandate = current_user.mandates.build(mandate_params)
+
+    puts "PROPERTY: #{@mandate.property_id}"
+    @mandate.property_id = nil if @mandate.property_id == 0
+    @mandate.building_id = nil if @mandate.building_id == 0
+
+    @mandate.landlord_id = @mandate.property.present? ? @mandate.property.landlord_id : @mandate.building.landlord_id
 
     respond_to do |format|
       if @mandate.save
@@ -94,6 +102,6 @@ class MandatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def mandate_params
-      params.require(:mandate).permit( :building_id, :property_id, :usage_type, :start_date, :end_date, :duration, :id_type, :id_number, :periodicity, :property_value, :commission_rate, :commission_amount, :property_tax_rate, :property_tax_amount, :net_amount,  :notes)
+      params.require(:mandate).permit(:property_type_id, :building_id, :property_id, :usage_type, :start_date, :end_date, :effective_date, :duration, :id_type, :id_number, :periodicity, :property_value, :commission_rate, :commission_amount, :property_tax_rate, :property_tax_amount, :net_amount,  :notes)
     end
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :rent_payments
   resources :permission_items
   resources :features
   resources :currencies
@@ -36,6 +37,8 @@ Rails.application.routes.draw do
     collection do  
         get "get_available_properties" => "leases#get_available_properties"
         get "get_property_rent" => "leases#get_property_rent"
+        get "get_properties_by_type" => "leases#get_properties_by_type"
+
 
     end
   end
@@ -44,7 +47,9 @@ Rails.application.routes.draw do
 
     collection do  
         get "get_properties" => "mandates#get_properties"
-        #get "get_property_rent" => "leases#get_property_rent"
+        get "get_properties_by_type" => "mandates#get_properties_by_type"
+
+        get "get_property_rent" => "mandates#get_property_rent"
 
     end
     
@@ -103,7 +108,7 @@ Rails.application.routes.draw do
   post "/users/new"     => "custom_users#create", as: :create_user
   get "/users/new"     => "custom_users#new", as: :new_user
   get "/user/edit/:id" => "custom_users#edit", as: :edit_user
-  patch "/user/update/:id" => "custom_users#update", as: :udapte_user
+  patch "/user/update/:id" => "custom_users#update", as: :update_user
   delete "/user/destroy/:id" => "custom_users#destroy", as: :destroy_user
   get "/user/delete/:id" => "custom_users#delete", as: :delete_user
   

@@ -172,6 +172,7 @@ end
 unless PropertyType.all.present?
     property_types = PropertyType.create(
         [
+            {name: "Immeuble", user_id: users.first.id},
             {name: "Appartement", user_id: users.first.id},
             {name: "Boutique", user_id: users.first.id},
             {name: "Parking", user_id: users.first.id},

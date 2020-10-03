@@ -1,6 +1,7 @@
 class CreateBuildings < ActiveRecord::Migration[5.2]
   def change
     create_table :buildings do |t|
+      t.string :uid
       t.references :landlord, foreign_key: true
       t.string :reference
       t.integer :apartment_number

@@ -3,7 +3,7 @@
 # Table name: incomes
 #
 #  id              :bigint           not null, primary key
-#  property_id     :bigint
+#  property_id     :integer
 #  lease_id        :bigint
 #  income_type     :string
 #  payer           :string

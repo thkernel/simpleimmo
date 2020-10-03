@@ -38,26 +38,49 @@ class IncomesController < ApplicationController
 
     #Rent payment.
 
-    if @income.start_date.present? && @income.end_date.present?
+    net_amount = @income.total_amount
 
-      start_month = @income.start_date.month
-      puts "START MONTH: #{start_month}"
+    if @income.rent_payment?
+      if @income.start_date.present? && @income.end_date.present?
 
-      start_year = @income.start_date.year
-      puts "START YEAR: #{start_year}"
-
-      end_month = @income.end_date.month
-      puts "END MONTH: #{end_month}"
-
-      end_year = @income.end_date.year
-      puts "END YEAR: #{end_year}"
-
-      (start_year .. end_year).each do |current|
+        start_date = @income.start_date
+        end_date = @income.end_date
+      
+        months = (start_date.to_date .. end_date.to_date).map{|d|  [d.month, d.year]}.uniq
         
-      end
+        rent_payments = []
 
+       
+
+        property = Property.find(@income.property_id)
+
+
+        lease = property.lease.property_enable_lease
+       
+
+        months.each do |item|
+            #rent_payment =  RentPayment.new
+            rent_payment_h = Hash.new
+            #rent_payment.lease_id = @income.lease_id
+            #rent_payment.month = item[0]  
+            #rent_payment.year = item[1]
+            rent_payment_h[:lease_id] = lease.id
+            rent_payment_h[:month] = item[0] 
+            rent_payment_h[:year] = item[1] 
+            rent_payments << rent_payment_h
+
+        end
+
+        puts "TO HASH: #{rent_payments}"
+        @income.rent_payments.build(rent_payments)
+      end
     end
 
+    @income.lease_id = lease.id
+
+
+
+    
 
     respond_to do |format|
       if @income.save

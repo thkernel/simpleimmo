@@ -1,17 +1,45 @@
+
+
+
 $(document).on('turbolinks:load', function(){
 
-
-
-    // Filter doctor by service.
+	
     $('#mandate-modal').on('shown.bs.modal', function() {
+		displayBuildings();
+		$("#mandate_property_type_id").on('change', function(){
+			displayBuildings();
+			ajaxPostData("#mandate_property_type_id", "/mandates/get_properties_by_type", "GET");
+
+		})
+		
+		function displayBuildings(){
+
+	
+			property_type = document.getElementById("mandate_property_type_id")
+			console.log("PROPERTY TYPE:", property_type);
+			property_type = property_type.options[property_type.selectedIndex].text;
+		   
+			if (property_type != null && property_type == "Immeuble"){
+				$(".buildings").css("display", "block");
+				
+			}
+			else{
+				$(".buildings").css("display", "none");
+		
+			}
+		}
+
+		
         ajaxPostData("#mandate_building_id", "/mandates/get_properties", "GET");
-        //ajaxPostData("#mandate_property_id", "/leases/get_property_rent", "GET");
+		ajaxPostData("#mandate_property_id", "/mandates/get_property_rent", "GET");
+		
+
     });
 
 
 
 
-    $('#mandate-modal').on('change', 'select', function(event) {
+    $('#mandate-modal').on('change', '#mandate_property_tax_rate', function(event) {
 	          
 	    target_id = event.target.id;
 	    target_value = $("#"+target_id ).val();
@@ -19,8 +47,6 @@ $(document).on('turbolinks:load', function(){
 	     console.log("ID :", target_id);
 	    //console.log(target_id)
 	    if (target_value != null && target_id == "mandate_property_tax_rate"){
-	     //ajaxFilterPost('#'+target_id, "/sales/get_medicament_price", "GET");
-
 
 		    vat = target_value;
 		    property_value = parseFloat($("#mandate_property_value").val());
@@ -45,8 +71,7 @@ $(document).on('turbolinks:load', function(){
 
 	    //console.log(target_id)
 	    if (target_value != null && target_id == "mandate_commission_rate"){
-	     //ajaxFilterPost('#'+target_id, "/sales/get_medicament_price", "GET");
-
+	    
 
 		    mandate_commission_rate = parseFloat(target_value);
 		    property_value = parseFloat($("#mandate_property_value").val());

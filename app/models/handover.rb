@@ -5,7 +5,7 @@
 #  id               :bigint           not null, primary key
 #  handover_type    :string
 #  reference        :string
-#  property_id      :bigint
+#  property_id      :integer
 #  lease_id         :bigint
 #  doors            :string
 #  windows          :string
@@ -26,6 +26,10 @@
 #
 
 class Handover < ApplicationRecord
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+  
   belongs_to :lease
   belongs_to :user
 

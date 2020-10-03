@@ -3,7 +3,7 @@
 # Table name: expenses
 #
 #  id              :bigint           not null, primary key
-#  property_id     :bigint
+#  property_id     :integer
 #  lease_id        :bigint
 #  expense_type    :string
 #  beneficiary     :string
@@ -20,8 +20,11 @@
 #
 
 class Expense < ApplicationRecord
-  #belongs_to :property
-  #belongs_to :payment_method
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+
+  belongs_to :property, optional: true
   belongs_to :user
 
   validates :expense_type, presence: true

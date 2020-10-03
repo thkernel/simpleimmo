@@ -3,12 +3,13 @@
 # Table name: mandates
 #
 #  id                  :bigint           not null, primary key
-#  landlord_id         :integer
-#  building_id         :integer
-#  property_id         :integer
+#  property_type_id    :bigint
+#  building_id         :bigint
+#  property_id         :bigint
 #  usage_type          :string
 #  start_date          :datetime
 #  end_date            :datetime
+#  effective_date      :datetime
 #  duration            :string
 #  id_type             :string
 #  id_number           :string
@@ -27,13 +28,21 @@
 #
 
 class Mandate < ApplicationRecord
-  #belongs_to :landlord
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+  
+  belongs_to :landlord, optional: true
+  belongs_to :property, optional: true
+  belongs_to :building, optional: true
+
   belongs_to :user
-  has_one :property, dependent: :destroy
-  has_one :building, dependent: :destroy
+  
+  #has_one :property, dependent: :destroy
+  #has_one :building, dependent: :destroy
 
   #validates_uniqueness_of :re, presence: true, :scope => :building_id
-  validates :property_id, presence: true, uniqueness: true
+  #validates :property_id, presence: true, uniqueness: true
 
 
 end

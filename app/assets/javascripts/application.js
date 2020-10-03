@@ -44,72 +44,107 @@
 //= require lib/select2/js/select2.full.min
 //= require cocoon
 //= require incomes
-//= require custom
-//= require leases
+
 //= require mandates
 //= require expenses
+//= require properties
+//= require leases
 
 
 $(document).on('turbolinks:load', function() {
-      $('#datatable1').DataTable({
+    var datatable = {
 
         
-            "searching": true,
-        "ordering": true,
-        language: {
-            processing: "Traitement en cours...",
-            search: "Rechercher&nbsp;:",
-            lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
-            info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-            infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-            infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-            infoPostFix: "",
-            loadingRecords: "Chargement en cours...",
-            zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
-            emptyTable: "Aucune donnée disponible dans le tableau",
-            paginate: {
-                first: "Premier",
-                previous: "Pr&eacute;c&eacute;dent",
-                next: "Suivant",
-                last: "Dernier"
-            },
-            aria: {
-                sortAscending: ": activer pour trier la colonne par ordre croissant",
-                sortDescending: ": activer pour trier la colonne par ordre décroissant"
-            }
-        },
-        responsive: false
-          });
+      "searching": true,
+  "ordering": true,
+  language: {
+      processing: "Traitement en cours...",
+      search: "Rechercher&nbsp;:",
+      lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+      info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+      infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+      infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+      infoPostFix: "",
+      loadingRecords: "Chargement en cours...",
+      zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+      emptyTable: "Aucune donnée disponible dans le tableau",
+      paginate: {
+          first: "Premier",
+          previous: "Pr&eacute;c&eacute;dent",
+          next: "Suivant",
+          last: "Dernier"
+      },
+      aria: {
+          sortAscending: ": activer pour trier la colonne par ordre croissant",
+          sortDescending: ": activer pour trier la colonne par ordre décroissant"
+      }
+  },
+  responsive: false
+    }
+      $('#datatable1').DataTable(datatable);
+      $('#properties-table').DataTable(datatable);
+      $('#buildings-table').DataTable(datatable);
+      $('#leases-table').DataTable(datatable);
+
   });
 
   
+  
   $(document).on('turbolinks:load', function() {
     $('body').on('shown.bs.modal', '.modal', function() {
-        $(this).find('select').each(function() {
-          var dropdownParent = $(document.body);
-          if ($(this).parents('.modal.in:first').length !== 0)
-            dropdownParent = $(this).parents('.modal.in:first');
-          $(this).select2({
-            dropdownParent: $('.modal'),
-            width: 'resolve' ,
-            
-
-          });
+      
+      $(this).find('select').each(function() {
+        var dropdownParent = $(document.body);
+        if ($(this).parents('.modal.in:first').length !== 0)
+          dropdownParent = $(this).parents('.modal.in:first');
+        $(this).select2({
+          dropdownParent: dropdownParent,
+          width: 'resolve' ,
         });
       });
+
+      $(this).find('.custom_select select').each(function() {
+        var dropdownParent = $(document.body);
+    
+          $(this).select2({
+            dropdownParent: dropdownParent,
+            width: 'auto' ,
+            dropdownAutoWidth: true,
+            
+          });
+      });
+
+
+
+    });
   });
-
+  
   $(document).on('turbolinks:load', function() {  
-
+  
     $(this).find('select').each(function() {
       var dropdownParent = $(document.body);
-
+  
         $(this).select2({
           dropdownParent: dropdownParent,
           width: 'resolve' ,
         });
     });
-
+  
+  });
+  
+  $(document).on('turbolinks:load', function() {  
+  
+    $(this).find('.custom_select select').each(function() {
+      var dropdownParent = $(document.body);
+  
+        $(this).select2({
+          dropdownParent: dropdownParent,
+          width: 'auto' ,
+          dropdownAutoWidth: true,
+          
+        });
+    });
+  
   });
 
 

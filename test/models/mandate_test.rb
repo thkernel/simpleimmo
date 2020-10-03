@@ -3,12 +3,13 @@
 # Table name: mandates
 #
 #  id                  :bigint           not null, primary key
-#  landlord_id         :integer
-#  building_id         :integer
-#  property_id         :integer
+#  property_type_id    :bigint
+#  building_id         :bigint
+#  property_id         :bigint
 #  usage_type          :string
 #  start_date          :datetime
 #  end_date            :datetime
+#  effective_date      :datetime
 #  duration            :string
 #  id_type             :string
 #  id_number           :string

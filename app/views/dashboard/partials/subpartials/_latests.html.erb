@@ -1,0 +1,68 @@
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-property-tab" data-toggle="tab" href="#nav-property" role="tab" aria-controls="nav-property" aria-selected="true">Propriétés</a>
+        <a class="nav-item nav-link" id="nav-inquiry-tab" data-toggle="tab" href="#nav-inquiry" role="tab" aria-controls="nav-inquiry" aria-selected="false">Immeubles</a>
+        <a class="nav-item nav-link" id="nav-ad-tab" data-toggle="tab" href="#nav-ad" role="tab" aria-controls="nav-ad" aria-selected="false">Locations</a>
+    </div>
+</nav>
+<div class="tab-content  mg-t-30" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-property" role="tabpanel" aria-labelledby="nav-property-tab">
+        <table id="properties-table" class="table table-striped">
+
+            <thead>
+                <tr>
+      
+                    <th>Type</th>
+                    <th>Réf./ID</th>
+                    <th>Immeuble</th>
+                    <th>Propriétaire</th>
+                    <th>Ville</th>
+                    <th>Quartier</th>
+                    <th>Etat</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody class="properties">
+                <%= render "properties/index" %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tab-pane fade" id="nav-inquiry" role="tabpanel" aria-labelledby="nav-inquiry-tab">
+        <table  id="buildings-table" class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Propriétaire</th>
+                    <th>Référence</th>
+                    <th>Nbre Appartement</th>
+                    <th>Ville</th>
+                    
+                </tr>   
+            </thead>
+
+            <tbody class="buildings">
+                <%= render "buildings/index" %>
+            </tbody>
+        </table>
+    </div>
+
+     <div class="tab-pane fade" id="nav-ad" role="tabpanel" aria-labelledby="nav-ad-tab">
+        <table  id="leases-table" class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>Locataire</th>
+                <th>Propriété</th>
+                <th>Usage</th>
+                
+            </tr>
+        </thead>
+
+        <tbody class="leases">
+            <%= render "leases/index" %>
+        </tbody>
+        </table>
+    </div>
+</div>

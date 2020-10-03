@@ -1,9 +1,11 @@
 class CreateLeases < ActiveRecord::Migration[5.2]
   def change
     create_table :leases do |t|
+      t.string :uid
       t.references :tenant, foreign_key: true
-      t.integer :building_id
-      t.integer :property_id
+      t.references :building, foreign_key: true
+      t.references :property, foreign_key: true
+      t.references :property_type, foreign_key: true
       t.string :usage_type
       t.datetime :start_date
       t.datetime :end_date

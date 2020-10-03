@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_171159) do
+ActiveRecord::Schema.define(version: 2020_10_02_175859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "buildings", force: :cascade do |t|
+    t.string "uid"
     t.bigint "landlord_id"
     t.string "reference"
     t.integer "apartment_number"
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "cities", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.string "status"
     t.bigint "user_id"
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "currencies", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.string "symbol"
     t.string "iso_code"
@@ -76,7 +79,8 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.integer "property_id"
+    t.string "uid"
+    t.bigint "property_id"
     t.bigint "lease_id"
     t.string "expense_type"
     t.string "beneficiary"
@@ -91,10 +95,22 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lease_id"], name: "index_expenses_on_lease_id"
+    t.index ["property_id"], name: "index_expenses_on_property_id"
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
+  create_table "features", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.string "subject_class"
+    t.text "description"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "handovers", force: :cascade do |t|
+    t.string "uid"
     t.string "handover_type"
     t.string "reference"
     t.integer "property_id"
@@ -120,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "incomes", force: :cascade do |t|
+    t.string "uid"
     t.integer "property_id"
     t.bigint "lease_id"
     t.string "income_type"
@@ -144,6 +161,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "landlord_types", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.text "description"
     t.string "status"
@@ -154,6 +172,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "landlords", force: :cascade do |t|
+    t.string "uid"
     t.bigint "landlord_type_id"
     t.string "civility"
     t.string "last_name"
@@ -181,9 +200,10 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "leases", force: :cascade do |t|
+    t.string "uid"
     t.bigint "tenant_id"
-    t.integer "building_id"
-    t.integer "property_id"
+    t.bigint "building_id"
+    t.bigint "property_id"
     t.string "usage_type"
     t.datetime "start_date"
     t.datetime "end_date"
@@ -207,17 +227,22 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_leases_on_building_id"
+    t.index ["property_id"], name: "index_leases_on_property_id"
     t.index ["tenant_id"], name: "index_leases_on_tenant_id"
     t.index ["user_id"], name: "index_leases_on_user_id"
   end
 
   create_table "mandates", force: :cascade do |t|
-    t.integer "landlord_id"
-    t.integer "building_id"
-    t.integer "property_id"
+    t.string "uid"
+    t.bigint "landlord_id"
+    t.bigint "property_type_id"
+    t.bigint "building_id"
+    t.bigint "property_id"
     t.string "usage_type"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.datetime "effective_date"
     t.string "duration"
     t.string "id_type"
     t.string "id_number"
@@ -233,10 +258,15 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_mandates_on_building_id"
+    t.index ["landlord_id"], name: "index_mandates_on_landlord_id"
+    t.index ["property_id"], name: "index_mandates_on_property_id"
+    t.index ["property_type_id"], name: "index_mandates_on_property_type_id"
     t.index ["user_id"], name: "index_mandates_on_user_id"
   end
 
   create_table "organizations", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.string "activity"
     t.string "address"
@@ -251,15 +281,29 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "permissions", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+  create_table "permission_items", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "permission_id"
+    t.string "action_name"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["permission_id"], name: "index_permission_items_on_permission_id"
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "role_id"
+    t.bigint "feature_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feature_id"], name: "index_permissions_on_feature_id"
+    t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 
   create_table "profiles", force: :cascade do |t|
+    t.string "uid"
     t.string "first_name"
     t.string "last_name"
     t.string "civility"
@@ -274,7 +318,8 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer "building_id"
+    t.string "uid"
+    t.bigint "building_id"
     t.bigint "landlord_id"
     t.bigint "property_type_id"
     t.string "reference"
@@ -295,6 +340,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_properties_on_building_id"
     t.index ["city_id"], name: "index_properties_on_city_id"
     t.index ["landlord_id"], name: "index_properties_on_landlord_id"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
@@ -302,6 +348,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "property_types", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.text "description"
     t.string "status"
@@ -311,7 +358,21 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
     t.index ["user_id"], name: "index_property_types_on_user_id"
   end
 
+  create_table "rent_payments", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "income_id"
+    t.bigint "lease_id"
+    t.integer "month"
+    t.integer "year"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["income_id"], name: "index_rent_payments_on_income_id"
+    t.index ["lease_id"], name: "index_rent_payments_on_lease_id"
+  end
+
   create_table "roles", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.text "description"
     t.string "status"
@@ -320,6 +381,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "services", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.integer "parent"
     t.text "description"
@@ -329,6 +391,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "taxes", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.float "rate"
     t.text "description"
@@ -340,6 +403,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "tenant_types", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
     t.text "description"
     t.string "status"
@@ -350,6 +414,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   end
 
   create_table "tenants", force: :cascade do |t|
+    t.string "uid"
     t.bigint "tenant_type_id"
     t.string "civility"
     t.string "last_name"
@@ -381,6 +446,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
     t.string "login"
     t.bigint "role_id"
     t.bigint "service_id"
+    t.string "status"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -415,6 +481,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   add_foreign_key "cities", "users"
   add_foreign_key "currencies", "users"
   add_foreign_key "expenses", "leases"
+  add_foreign_key "expenses", "properties"
   add_foreign_key "expenses", "users"
   add_foreign_key "handovers", "leases"
   add_foreign_key "handovers", "users"
@@ -423,15 +490,26 @@ ActiveRecord::Schema.define(version: 2020_06_21_171159) do
   add_foreign_key "landlord_types", "users"
   add_foreign_key "landlords", "landlord_types"
   add_foreign_key "landlords", "users"
+  add_foreign_key "leases", "buildings"
+  add_foreign_key "leases", "properties"
   add_foreign_key "leases", "tenants"
   add_foreign_key "leases", "users"
+  add_foreign_key "mandates", "buildings"
+  add_foreign_key "mandates", "landlords"
+  add_foreign_key "mandates", "properties"
+  add_foreign_key "mandates", "property_types"
   add_foreign_key "mandates", "users"
+  add_foreign_key "permission_items", "permissions"
+  add_foreign_key "permissions", "features"
+  add_foreign_key "permissions", "roles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "properties", "buildings"
   add_foreign_key "properties", "cities"
   add_foreign_key "properties", "landlords"
   add_foreign_key "properties", "property_types"
   add_foreign_key "properties", "users"
   add_foreign_key "property_types", "users"
+  add_foreign_key "rent_payments", "leases"
   add_foreign_key "taxes", "users"
   add_foreign_key "tenant_types", "users"
   add_foreign_key "tenants", "tenant_types"

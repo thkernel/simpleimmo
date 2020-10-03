@@ -1,7 +1,11 @@
 <% @mandates.each do |mandate| %>
       <tr>
-       
-        <td><%= property(mandate.property_id).reference  %></td>
+        <td><%= mandate.created_at.strftime("%d/%m/%Y")  %></td>
+        <td><%= mandate.building.reference if mandate.building_id   %></td>
+
+        <td><%= mandate.property.reference if mandate.property_id   %></td>
+        <td> <%= mandate.landlord.full_name  %></td>
+
         <td><%= mandate.usage_type %></td>
         <td>
             <div class="action-buttons">

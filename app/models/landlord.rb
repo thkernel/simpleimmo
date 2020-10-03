@@ -28,6 +28,10 @@
 #
 
 class Landlord < ApplicationRecord
+	include SharedUtils::Generate
+
+  	before_save :generate_random_number_uid
+
   	belongs_to :landlord_type
   	belongs_to :user
 

@@ -7,6 +7,7 @@
 #  login                  :string
 #  role_id                :bigint
 #  service_id             :bigint
+#  status                 :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string

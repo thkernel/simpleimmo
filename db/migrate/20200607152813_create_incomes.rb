@@ -1,6 +1,7 @@
 class CreateIncomes < ActiveRecord::Migration[5.2]
   def change
     create_table :incomes do |t|
+      t.string :uid
       t.integer :property_id
       t.references :lease, foreign_key: true
       t.string :income_type

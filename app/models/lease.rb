@@ -32,16 +32,24 @@
 #
 
 class Lease < ApplicationRecord
+  include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
   
   before_save :set_status
 
   belongs_to :tenant
   belongs_to :user
   belongs_to :property
+  belongs_to :building, optional: true
 
   validates_with PropertyValidator
 
+  def property_enable_lease
+    Lease.where("status = ? AND property_id = ?", "enable", self.property.id).first
+  end
 
+  
   private
 
 	def set_status

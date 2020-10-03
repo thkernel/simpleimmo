@@ -1,13 +1,10 @@
-<% if current_user %>
-		<%= render "dashboard/partials/admin-dashboard" %>
-	<% elsif is_superadmin? %>
-		<%= render "dashboard/partials/admin-dashboard" %>
-	<% elsif is_contributor?(current_user) %>
-		<%= render "dashboard/partials/contributor-dashboard" %>
-	<% elsif is_producer?(current_user) %>
-		<%= render "dashboard/partials/producer-dashboard" %>
-	<% elsif is_manager? %>
-		<%= render "dashboard/partials/manager-dashboard" %>
+
+<% if current_user.superuser? %>
+    <%= render "dashboard/partials/superuser_dashboard" %>
+<% elsif current_user.admin? %>
+    <%= render "dashboard/partials/admin_dashboard" %>
+<% elsif current_user.user %>
+    <%= render "dashboard/partials/user_dashboard" %>
 
 <% end %>
 

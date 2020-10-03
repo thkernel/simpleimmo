@@ -37,6 +37,23 @@ module FilterConcern
         end
     end
 
+    def get_properties_by_type
+        puts "Les paramètres:#{params[:data]}"
+        
+        if params[:data].present?
+            
+            
+            properties = Property.where(property_type_id: params[:data])
+
+        
+            puts "PROPERTIES : #{properties.inspect}"
+            @properties = properties.map{|a| [a.full_reference, a.id ]}.insert(0, "Sélectionner")
+        else
+            properties = Property.all
+            @properties = properties.map{|a| [a.full_reference, a.id ]}.insert(0, "Sélectionner")
+        end
+    end
+
 
     def get_available_properties
         puts "Les paramètres:#{params[:data]}"

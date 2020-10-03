@@ -1,6 +1,7 @@
 class CreateLandlords < ActiveRecord::Migration[5.2]
   def change
     create_table :landlords do |t|
+      t.string :uid
       t.references :landlord_type, foreign_key: true
       t.string :civility
       t.string :last_name

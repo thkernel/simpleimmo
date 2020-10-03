@@ -1,6 +1,7 @@
 class CreateHandovers < ActiveRecord::Migration[5.2]
   def change
     create_table :handovers do |t|
+      t.string :uid
       t.string :handover_type
       t.string :reference
       t.integer :property_id

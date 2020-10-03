@@ -18,4 +18,7 @@
 #
 
 class Organization < ApplicationRecord
+    include SharedUtils::Generate
+
+    before_save :generate_random_number_uid
 end

@@ -5,41 +5,43 @@
         </ul>
 
     <div class="row">
-      <div class="col-md-5">
+      <div class="form-group col-md-6">
+        <%= form.label :property_type_id, "Type propriété", class: "required" %>
+        <%= form.collection_select(:property_type_id, @property_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+      </div>  
+
+      <div class="form-group col-md-6 buildings">
+        <%= form.label :building_id, "Immeuble" %>
+        <%= form.collection_select(:building_id, @buildings, :id, :reference, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+      </div>
+
+       
+     
+    </div>
+
+  <div class="row">
+   <div class="form-group col-md-6">
+        <%= form.label :property_id, "Propriété", class: "required" %>
+        <%= form.collection_select(:property_id, @properties, :id, :full_reference, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+      </div>
+    <div class="col-md-6">
 
         <div class="form-group">
           <%= form.label :tenant_id, "Locataire", class: "required" %>
-          <%= form.collection_select(:tenant_id, @tenants, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control") %> 
+          <%= form.collection_select(:tenant_id, @tenants, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
         </div>
       </div>
-
-      <div class="col-md-7">
-
-        <div class="form-group">
-          <%= form.label :building_id, "Immeuble" %>
-          <%= form.collection_select(:building_id, @buildings, :id, :reference, {prompt: "Sélectionner"}, class: "form-control") %> 
-        </div>
-      </div>
-    </div>
-
-  <div class="row">
-    <div class="col-md-8">
-      <div class="form-group">
-        <%= form.label :property_id, "Propriété", class: "required" %>
-        <%= form.collection_select(:property_id, @properties, :id, :full_reference, {prompt: "Sélectionner"}, class: "form-control") %> 
-      </div>
-    </div>
-
-    <div class="col-md-4">
-
-      <div class="form-group">
-        <%= form.label :usage_type, "Usage", class: "required" %>
-        <%= form.select :usage_type, USAGE_TYPE, {prompt: "Sélectionner"}, class: "form-control" , required: true %>
-      </div>
-    </div>
+  
   </div>
 
   <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :usage_type, "Usage", class: "required" %>
+        <%= form.select :usage_type, USAGE_TYPES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%" , required: true %>
+      </div>
+    </div>
+
     <div class="col-md-3">
 
       <div class="form-group">
@@ -62,12 +64,7 @@
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= form.label :duration, "Durée" %>
-        <%= form.text_field :duration, class: "form-control", placeholder: "Durée" %>
-      </div>
-    </div>
+   
   </div>
 
   <div class="row">

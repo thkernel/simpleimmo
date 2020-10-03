@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @rent_payment.uid %>
+</p>
+
+<p>
+  <strong>Income:</strong>
+  <%= @rent_payment.income %>
+</p>
+
+<p>
+  <strong>Lease:</strong>
+  <%= @rent_payment.lease %>
+</p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @rent_payment.month %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @rent_payment.year %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @rent_payment.status %>
+</p>
+
+<%= link_to 'Edit', edit_rent_payment_path(@rent_payment) %> |
+<%= link_to 'Back', rent_payments_path %>

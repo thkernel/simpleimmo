@@ -5,7 +5,7 @@
 #  id               :bigint           not null, primary key
 #  handover_type    :string
 #  reference        :string
-#  property_id      :bigint
+#  property_id      :integer
 #  lease_id         :bigint
 #  doors            :string
 #  windows          :string

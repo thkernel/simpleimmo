@@ -1,14 +1,60 @@
 class CustomUsersController < ApplicationController
-	before_action :authenticate_user!
+		before_action :authenticate_user!
+		layout "dashboard"
 
-    layout "dashboard"
-    def index 
-        @users = User.all
-    end
-    def new
+    before_action :set_user, only: [:show, :edit, :update, :destroy] # probably want to keep using this
+    
+    
+
+    
+		def new
+			@services = Service.all
+			@roles = Role.where.not(name: ["superuser", "root"])
+			@user = User.new
+			@user.build_profile
 		
-		@user = User.new
-	end
+			
+		end
+	
+    def create
+		@user = User.new(user_params)
+		#@user.created_by = current_user.id
+
+			respond_to do |format|
+				if @user.save
+					#@user.build_profile
+					@users = User.where.not(id: current_user.id)
+
+					format.html { redirect_to all_users_path, notice: 'User was successfully created.' }
+					format.json { render :show, status: :created, location: @contributor }
+					format.js
+		
+
+			
+			
+				else
+					format.html { render :new }
+					format.json { render json: @user.errors, status: :unprocessable_entity }
+					format.js
+				end
+			end
+		end
+		
+		def create_admin
+		end
+
+	# Index
+    def index
+    	
+			@users = User.where.not(id: current_user.id)
+		
+	
+    end
+    
+    def unregistered
+     
+    end
+	
     # GET /users/1
     # GET /users/1.json
 	def show
@@ -16,30 +62,10 @@ class CustomUsersController < ApplicationController
     end
 
     # GET /users/1/edit
-    def edit
-    	@roles = Role.where.not(name: "Superadmin")
-    end
-
-    def create
-		@user = User.new(user_params)
-		#@user.created_by = current_user.id
-
-      	respond_to do |format|
-        	if @user.save
-          		
-
-				format.html { redirect_to all_users_path, notice: 'User was successfully created.' }
-				format.json { render :show, status: :created, location: @contributor }
-				format.js 
-		  
-
-			  
-        	else
-				format.html { render :new }
-				format.json { render json: @user.errors, status: :unprocessable_entity }
-				format.js 
-        	end
-      	end
+		def edit
+			@services = Service.all
+			@roles = Role.where.not(name: "superuser")
+			@user.profile || @user.build_profile 
     end
 
     def delete
@@ -56,7 +82,7 @@ class CustomUsersController < ApplicationController
 	  
       	respond_to do |format|
         	if @user.update_attributes(status: 'disable')
-         		@users = User.find_by_created_by(current_user).where.not(id: current_user)
+						@users = User.where.not(id: current_user.id)
         
 				format.html { redirect_to @user, notice: 'User was successfully updated.' }
 				format.json { render :show, status: :ok, location: @user }
@@ -84,17 +110,13 @@ class CustomUsersController < ApplicationController
 		@user = User.find(params[:id]) if params[:id].present?
 		respond_to do |format|
       		if @user.update_attributes(status: 'enable')
-				@users = User.find_by_created_by(current_user).where.not(id: current_user)
+						@users = User.where.not(id: current_user.id)
 			
 				format.html { redirect_to @user, notice: 'User was successfully updated.' }
 				format.json { render :show, status: :ok, location: @user }
 				format.js
       
-				# Send mail to user.
-				if @user.receives_notifications == true && @user.status =='enable'
-					url = user_session_url
-					UserMailer.enable_user_mail(@user.email, @user.password, url).deliver_now
-				end
+				
 
 				Thread.new do
 					Rails.application.executor.wrap do
@@ -117,23 +139,16 @@ class CustomUsersController < ApplicationController
     	@users = User.all
     
     	if @user.destroy
-    		@users = User.find_by_created_by(current_user).where.not(id: current_user)
-			respond_to do |format|
-				format.html { redirect_to all_users_path, notice: "L'utilisateur a été supprimer avec succès!" }
-				format.json { head :no_content }
-				#format.js
-		
-				# Send mail to user.
-				if @user.receives_notifications == true && @user.status =='enable'
-					url = user_session_url
-					Thread.new do
-						Rails.application.executor.wrap do
-							UserMailer.delete_user_mail(@user.email, @user.password, url).deliver_now
-						end 
-					end
+				@users = User.where.not(id: current_user.id)
+
+				respond_to do |format|
+					format.html { redirect_to all_users_path, notice: "L'utilisateur a été supprimer avec succès!" }
+					format.json { head :no_content }
+					format.js
+			
+					
+			
 				end
-		
-			end
 		end
 
  	end
@@ -151,25 +166,14 @@ class CustomUsersController < ApplicationController
 			end
 
 			if @user.update(user_params)
-				@users = User.find_by_created_by(current_user).where.not(id: current_user)
-				
+				@users = User.where.not(id: current_user.id)
+
 				format.html { redirect_to all_users_path, notice: 'User was successfully updated.' }
 				format.json { render :show, status: :ok, location: @user }
 				format.js
 			
 
-		
-				  
-				# Send mail to user.
-				if @user.receives_notifications == true && @user.status =='enable'
-
-					url = user_session_url
-					Thread.new do
-						Rails.application.executor.wrap do
-							UserMailer.edit_user_mail(@user.email, @user.password, url).deliver_now
-						end
-					end
-				end
+	
 				  
 				
 			else
@@ -184,15 +188,12 @@ class CustomUsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-      if !@user.nil?
-        return @user
-        
-      end
+     
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password,:password_confirmation)
+      params.require(:user).permit(:email, :password,:password_confirmation, :role_id, :service_id,  profile_attributes: [:first_name, :last_name, :civility])
     end
 
 end
